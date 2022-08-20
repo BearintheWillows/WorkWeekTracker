@@ -1,7 +1,4 @@
-namespace DataModels.Models;
-
-using System.Collections;
-using System.ComponentModel.DataAnnotations.Schema;
+namespace DataModels.WorkModels;
 
 public class Run
 {

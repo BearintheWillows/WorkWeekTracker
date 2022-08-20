@@ -1,0 +1,24 @@
+@typeparam TRowType
+
+<div class="container-fluid">
+    <div class="row p-2">
+        <ChildContext />
+    </div>
+</div>
+
+<table class="table table-sm table-bordered table-striped">
+    @if ( Header != null )
+    {
+        <thead>@Header</thead>
+    }
+    
+    <tbody>
+    @if ( RowTemplate != null )
+    {
+        @foreach ( TRowType item in RowData )
+        {
+            <tr>@RowTemplate(item)</tr>
+        }
+    }
+    </tbody>
+</table>

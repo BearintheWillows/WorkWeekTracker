@@ -1,0 +1,31 @@
+@page "/runs"
+
+
+<h5 class="bg-primary text-white text-center p-2">Runs (WebAssembly)</h5>
+<TableTemplate RowData="Runs">
+    <Header>
+        <tr>
+            <th>Number</th><th>Location</th><th>Day of Week</th><th>Location</th>
+        </tr>
+    </Header>
+    <RowTemplate >
+        <td>@context.Number</td>
+        <td>@context.LocationArea</td>
+        <td>@context.DayOfWeek.ToString()</td>
+        <td class="text-center">
+            <NavLink class="btn btn-sm btn-info"
+                     href="">
+                Details
+            </NavLink>
+            <NavLink class="btn btn-sm btn-warning"
+                     href="">
+                Edit
+            </NavLink>
+            <button class="btn btn-sm btn-danger">
+                Delete
+            </button>
+        </td>
+    </RowTemplate>
+</TableTemplate>
+
+<NavLink class="btn btn-primary" href="forms/create">Create</NavLink>

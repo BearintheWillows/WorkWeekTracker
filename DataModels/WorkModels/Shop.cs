@@ -1,4 +1,4 @@
-namespace DataModels.Models;
+namespace DataModels.WorkModels;
 
 public class Shop
 {

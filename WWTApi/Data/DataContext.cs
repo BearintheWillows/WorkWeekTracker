@@ -1,6 +1,6 @@
 namespace WWTApi.Data;
 
-using DataModels.Models;
+using DataModels.WorkModels;
 using Microsoft.EntityFrameworkCore;
 
 public class DataContext : DbContext

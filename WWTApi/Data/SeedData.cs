@@ -1,6 +1,6 @@
 namespace WWTApi.Data;
 
-using DataModels.Models;
+using DataModels.WorkModels;
 
 public static class SeedData
 {

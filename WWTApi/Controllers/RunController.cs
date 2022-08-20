@@ -1,6 +1,6 @@
 namespace WWTApi.Controllers;
 
-using DataModels.Models;
+using DataModels.WorkModels;
 using Microsoft.AspNetCore.Mvc;
 using WWTApi.Data;
 
@@ -15,9 +15,9 @@ public class RunController : ControllerBase
 		_context = context;
 	}
 
-	[HttpGet( "{Id}" )]
-	public async Task<Run> GetDetails(int Id)
+	[HttpGet]
+	public async Task<IAsyncEnumerable<Run>>? GetAll()
 	{
-		return await _context.Runs.FindAsync(Id);
+		return _context.Runs.AsAsyncEnumerable();
 	}
 }
