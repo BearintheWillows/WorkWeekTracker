@@ -1,19 +1,17 @@
+namespace WWTClient.Pages.Runs;
+
 using System.Net.Http.Json;
-using Microsoft.AspNetCore.Components;
-using WWTClient.Shared.Templates;
 using DataModels.WorkModels;
+using DataModels.WorkModels.DTOs.RunDTOs;
+using Microsoft.AspNetCore.Components;
 
-namespace WWTClient.Pages;
-
-
-
-public partial class List
+public partial class RunList
 {
 	[Inject]
 	public HttpClient? Http { get; set; }
 
 	[Parameter]
-	public IEnumerable<Run>? Runs { get; set; } = Enumerable.Empty<Run>();
+	public IEnumerable<RunDto> Runs { get; set; } = Enumerable.Empty<RunDto>();
 
 	protected override async Task OnInitializedAsync()
 	{
@@ -22,7 +20,7 @@ public partial class List
 	}
 	private async Task UpdateData() {
 		if (Http != null) {
-			Runs = await Http.GetFromJsonAsync<IEnumerable<Run>>("/api/run") ?? new List<Run>();
+			Runs = await Http.GetFromJsonAsync<IEnumerable<RunDto>>("/api/run") ?? new List<RunDto>();
 		}
 	}
 	// string GetEditUrl(long    id) => $"forms/edit/{id}";

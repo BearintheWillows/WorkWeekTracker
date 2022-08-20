@@ -1,6 +1,7 @@
 namespace WWTApi.Controllers;
 
 using DataModels.WorkModels;
+using DataModels.WorkModels.DTOs.RunDTOs;
 using Microsoft.AspNetCore.Mvc;
 using WWTApi.Data;
 
@@ -16,8 +17,15 @@ public class RunController : ControllerBase
 	}
 
 	[HttpGet]
-	public async Task<IAsyncEnumerable<Run>>? GetAll()
+	public async Task<IQueryable<RunDto>> GetRuns()
 	{
-		return _context.Runs.AsAsyncEnumerable();
+		var runs = from r in _context.Runs
+				   select  new RunDto()
+					   {
+					   Number = r.Number,
+					   LocationArea = r.LocationArea,
+					   DayOfWeek = r.DayOfWeek,
+					   };
+		return runs;
 	}
 }
