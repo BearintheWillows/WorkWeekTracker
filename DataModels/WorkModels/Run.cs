@@ -1,7 +1,10 @@
 namespace DataModels.WorkModels;
 
+using System.ComponentModel.DataAnnotations.Schema;
+
 public class Run
 {
+	
 	public int RunId { get;           set; }
 	
 	public int Number { get;           set; } = 0;
