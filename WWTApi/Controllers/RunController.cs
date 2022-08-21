@@ -4,6 +4,7 @@ using DataModels.WorkModels.DTOs.RunDTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Data;
+using DataModels.WorkModels;
 
 [ApiController]
 [Route( "api/[controller]/" )]
@@ -20,7 +21,10 @@ public class RunController : ControllerBase
 	public async Task<IQueryable<RunDto>> GetRuns()
 	{
 		var runs = from r in _context.Runs
-		           select new RunDto() { RunId = r.RunId, Number = r.Number, LocationArea = r.LocationArea, DayOfWeek = r.DayOfWeek, };
+		           select new RunDto()
+			           {
+			           RunId = r.RunId, Number = r.Number, LocationArea = r.LocationArea, DayOfWeek = r.DayOfWeek,
+			           };
 		return runs;
 	}
 
@@ -28,18 +32,42 @@ public class RunController : ControllerBase
 	public async Task<RunDetailDto> GetRun(int id)
 	{
 		var run = await _context.Runs
-		                  .Include( r => r.Shifts )
-		                  .Include( r => r.Shops )
-		                  .Select( r => new RunDetailDto()
-				                   {
-				                   RunId = r.RunId,
-				                   Number = r.Number,
-				                   LocationArea = r.LocationArea,
-				                   DayOfWeek = r.DayOfWeek,
-				                   ShiftCount = r.Shifts.Count(),
-				                   ShopCount = r.Shops.Count()
-				                   }).SingleAsync(r => r.RunId == id);
-		
+		                        .Include( r => r.Shifts )
+		                        .Include( r => r.Shops )
+		                        .Select( r => new RunDetailDto()
+				                         {
+				                         RunId = r.RunId,
+				                         Number = r.Number,
+				                         LocationArea = r.LocationArea,
+				                         DayOfWeek = r.DayOfWeek,
+				                         ShiftCount = r.Shifts.Count(),
+				                         ShopCount = r.Shops.Count()
+				                         }
+		                         ).SingleAsync( r => r.RunId == id );
+
 		return run;
+	}
+
+	[HttpGet( "{id}/Shops" )]
+	public async Task<IEnumerable<object>> GetShops(int id)
+	{
+		return await _context.Runs.Where( r => r.RunId == id ).Select( r => new
+				{
+				r.Number,
+				r.DayOfWeek,
+				Shops = r.Shops
+				         .Select( s => new
+						          {
+						          s.Name,
+						          s.Address1,
+						          s.City,
+						          s.County,
+						          s.PostCode,
+						          s.Notes
+						          }
+				          ).ToList(),
+				}
+		).ToListAsync();
+		
 	}
 }
