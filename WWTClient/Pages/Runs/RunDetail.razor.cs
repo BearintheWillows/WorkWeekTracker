@@ -1,4 +1,3 @@
-using WWTClient.Interfaces;
 
 namespace WWTClient.Pages.Runs;
 
@@ -6,7 +5,7 @@ using System.Net.Http.Json;
 using DataModels.WorkModels.DTOs.RunDTOs;
 using Microsoft.AspNetCore.Components;
 
-public partial class RunDetail : IHttpClient
+public partial class RunDetail
 {
 	[Inject]
 	public HttpClient? Http { get; set; }
