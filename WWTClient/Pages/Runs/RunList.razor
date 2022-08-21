@@ -13,8 +13,7 @@
         <td>@context.LocationArea</td>
         <td>@context.DayOfWeek.ToString()</td>
         <td class="text-center">
-            <NavLink class="btn btn-sm btn-info"
-                     href="">
+            <NavLink class="btn btn-sm btn-info" href="@GetDetailsUrl( @context.RunId )">
                 Details
             </NavLink>
             <NavLink class="btn btn-sm btn-warning"

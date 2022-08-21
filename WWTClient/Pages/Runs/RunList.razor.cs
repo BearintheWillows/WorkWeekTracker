@@ -23,8 +23,12 @@ public partial class RunList
 			Runs = await Http.GetFromJsonAsync<IEnumerable<RunDto>>("/api/run") ?? new List<RunDto>();
 		}
 	}
+
+	public static string GetDetailsUrl(int id) => $"run/detail/{id}";
+	
+	
 	// string GetEditUrl(long    id) => $"forms/edit/{id}";
-	// string GetDetailsUrl(long id) => $"forms/details/{id}";
+	
 	// public async Task HandleDelete(Person p) {
 	// 	if (Http != null) {
 	// 		HttpResponseMessage resp =

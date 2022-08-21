@@ -1,0 +1,25 @@
+@page "/run/detail/{id:int}"
+
+<h5 class="bg-primary text-white text-center p-2">Runs (WebAssembly)</h5>
+<div class="container-fluid row p-2">
+    <table class="table table-sm table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Number</th><th>Location</th><th>Day of Week</th><th>Shop Count</th><th>Shift Count</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>@Run.Number</td>
+            <td>@Run.LocationArea</td>
+            <td>@Run.DayOfWeek.ToString()</td>
+            <td>@Run.ShopCount</td>
+            <td>@Run.ShiftCount</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="text-center">
+    <NavLink class="btn btn-sm btn-warning" href=""> Edit </NavLink>
+    <button class="btn btn-sm btn-danger">Delete</button>
+</div>
