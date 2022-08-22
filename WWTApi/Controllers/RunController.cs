@@ -1,5 +1,7 @@
 namespace WWTApi.Controllers;
 
+using System.Collections;
+using System.Text.Json;
 using DataModels.WorkModels.DTOs.RunDTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -49,25 +51,25 @@ public class RunController : ControllerBase
 	}
 
 	[HttpGet( "{id}/Shops" )]
-	public async Task<IEnumerable<object>> GetShops(int id)
+	public async Task<string> GetShops(int id)
 	{
-		return await _context.Runs.Where( r => r.RunId == id ).Select( r => new
+		var response = await _context.Runs.Where( r => r.RunId == id ).Select( r => new RunDetailDto
 				{
-				r.Number,
-				r.DayOfWeek,
-				Shops = r.Shops
-				         .Select( s => new
-						          {
-						          s.Name,
-						          s.Address1,
-						          s.City,
-						          s.County,
-						          s.PostCode,
-						          s.Notes
-						          }
-				          ).ToList(),
+				Number = r.Number,
+				DayOfWeek = r.DayOfWeek,
+				Shops = r.Shops.Select( s => new Shop
+						{
+						Name = s.Name,
+						Address1 = s.Address1,
+						City = s.City,
+						County = s.County,
+						PostCode = s.PostCode,
+						Notes = s.Notes,
+						}
+				).ToList(),
 				}
-		).ToListAsync();
-		
+		).SingleOrDefaultAsync();
+
+		return JsonSerializer.Serialize<RunDetailDto>( response );
 	}
 }

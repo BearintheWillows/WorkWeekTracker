@@ -1,6 +1,29 @@
-@page "/ShopList"
-<h3>ShopList</h3>
+@page "/run/{id:long}/shops"
 
-@code {
-    
-}
+<h5 class="bg-primary text-white text-center p-2">Shops for Run @Run.Number on a @Run.DayOfWeek.ToString()</h5>
+<div class="container-fluid row p-2">
+    <table class="table table-sm table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Name</th><th>Address1</th><th>City</th><th>Country</th><th>PostCode</th><th>Notes</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach ( var item in Run.Shops )
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Address1</td>
+                <td>@item.City</td>
+                <td>@item.County</td>
+                <td>@item.PostCode</td>
+                <td>@item.Notes</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+<div class="text-center">
+    <NavLink class="btn btn-sm btn-warning" href=""> Edit </NavLink>
+    <button class="btn btn-sm btn-danger">Delete</button>
+</div>
