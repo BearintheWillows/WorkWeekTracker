@@ -25,4 +25,7 @@ public partial class RunDetail
 			Run = await Http.GetFromJsonAsync<RunDetailDto>( $"/api/run/{Id}" ) ?? new RunDetailDto();
 		}
 	}
+	
+	public static string GetShopsUrl(int id) => $"Run/{id}/shops";
+
 }

@@ -13,7 +13,7 @@
             <td>@Run.Number</td>
             <td>@Run.LocationArea</td>
             <td>@Run.DayOfWeek.ToString()</td>
-            <td>@Run.ShopCount</td>
+            <td><NavLink href="@GetShopsUrl(@Run.RunId)">@Run.ShopCount</NavLink></td>
             <td>@Run.ShiftCount</td>
         </tr>
         </tbody>

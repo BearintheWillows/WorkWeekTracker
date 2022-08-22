@@ -25,7 +25,8 @@ public partial class RunList
 	}
 
 	public static string GetDetailsUrl(int id) => $"run/detail/{id}";
-	
+	public static string GetShopsUrl(int   id) => $"run/{id}/shops";
+
 	
 	// string GetEditUrl(long    id) => $"forms/edit/{id}";
 	

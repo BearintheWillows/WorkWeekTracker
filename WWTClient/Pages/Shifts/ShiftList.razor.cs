@@ -23,4 +23,6 @@ public partial class ShiftList {
 			Shifts = await Http.GetFromJsonAsync<IEnumerable<Shift>>("/api/shift") ?? new List<Shift>();
 		}
 	}
+	
+	
 }
