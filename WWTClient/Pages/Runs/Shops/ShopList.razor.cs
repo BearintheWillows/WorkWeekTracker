@@ -1,8 +1,6 @@
-namespace WWTClient.Pages.Shops;
+namespace WWTClient.Pages.Runs.Shops;
 
 using System.Net.Http.Json;
-using System.Text.Json;
-using DataModels.WorkModels;
 using DataModels.WorkModels.DTOs.RunDTOs;
 using Microsoft.AspNetCore.Components;
 
@@ -21,7 +19,6 @@ public partial class ShopList
 	protected override async Task OnParametersSetAsync()
 	{
 		await UpdateData();
-		Console.WriteLine( Run.ToString() );
 	}
 
 	public async Task UpdateData()

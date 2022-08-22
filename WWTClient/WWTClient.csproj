@@ -19,4 +19,12 @@
       <ProjectReference Include="..\DataModels\DataModels.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\Shops\ShopList.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Pages\Runs\Shops\ShopList.razor" />
+    </ItemGroup>
+
 </Project>

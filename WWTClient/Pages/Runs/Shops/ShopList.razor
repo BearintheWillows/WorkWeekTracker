@@ -1,0 +1,24 @@
+@page "/run/{id:long}/shops"
+
+<h5 class="bg-primary text-white text-center p-2">Shops for Run @Run.Number on a @Run.DayOfWeek.ToString()</h5>
+
+    <TableTemplate RowData="Run.Shops">
+        <Header>
+            <tr>
+                <th>Name</th><th>Address1</th><th>City</th><th>Country</th><th>PostCode</th><th>Notes</th>
+            </tr>
+        </Header>
+        <RowTemplate>
+            <td>@context.Name</td>
+            <td>@context.Address1</td>
+            <td>@context.City</td>
+            <td>@context.County</td>
+            <td>@context.PostCode</td>
+            <td>@context.Notes</td>
+        </RowTemplate>
+    </TableTemplate>
+
+<div class="text-center">
+    <NavLink class="btn btn-sm btn-warning" href=""> Edit </NavLink>
+    <button class="btn btn-sm btn-danger">Delete</button>
+</div>
