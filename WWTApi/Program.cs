@@ -5,7 +5,8 @@ var builder = WebApplication.CreateBuilder( args );
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<DataContext>(opts => {
 	opts.UseSqlServer(builder.Configuration["ConnectionStrings:WWTConnection"]);
@@ -19,23 +20,19 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.UseStaticFiles();
 
-// Configure the HTTP request pipeline.
-if ( app.Environment.IsDevelopment() )
-{
-	app.UseSwagger();
-	app.UseSwaggerUI();
-}
+
 
 app.UseHttpsRedirection();
-
-
+app.UseBlazorFrameworkFiles();
+app.UseStaticFiles();
+app.UseRouting();
+app.MapRazorPages();
 app.MapControllers();
 app.MapDefaultControllerRoute();
 
-app.UseBlazorFrameworkFiles("/app");
-app.MapFallbackToFile("/app/{*path:nonfile}", "/app/index.html");
+
+app.MapFallbackToFile( "index.html" );
 
 var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<DataContext>();
 SeedData.EnsurePopulated( context );

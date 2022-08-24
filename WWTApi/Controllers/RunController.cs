@@ -9,7 +9,7 @@ using Data;
 using DataModels.WorkModels;
 
 [ApiController]
-[Route( "api/[controller]/" )]
+[Route( "api/[controller]" )]
 public class RunController : ControllerBase
 {
 	private DataContext _context;
@@ -20,14 +20,25 @@ public class RunController : ControllerBase
 	}
 
 	[HttpGet]
-	public async Task<IQueryable<RunDto>> GetRuns()
+	public async Task<List<RunDto>> GetRuns()
 	{
-		var runs = from r in _context.Runs
-		           select new RunDto()
-			           {
-			           RunId = r.RunId, Number = r.Number, LocationArea = r.LocationArea, DayOfWeek = r.DayOfWeek,
-			           };
-		return runs;
+		return _context.Runs.Include( r => r.Shops ).Select( r => new RunDto()
+			{
+			RunId = r.RunId,
+			Number = r.Number,
+			DayOfWeek = r.DayOfWeek,
+			Shops = r.Shops.Select( s => new Shop
+					{
+					Name = s.Name,
+					Address1 = s.Address1,
+					City = s.City,
+					County = s.County,
+					PostCode = s.PostCode,
+					Notes = s.Notes,
+					}
+			).ToList(),
+			}
+		).ToList();
 	}
 
 	[HttpGet( "{id}" )]

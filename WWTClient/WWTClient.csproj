@@ -5,10 +5,11 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
-        <StaticWebAssetBasePath>/app/</StaticWebAssetBasePath>
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Blazorise.Bootstrap" Version="1.0.6" />
+        <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.0.6" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.8" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.8" PrivateAssets="all" />
         <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />

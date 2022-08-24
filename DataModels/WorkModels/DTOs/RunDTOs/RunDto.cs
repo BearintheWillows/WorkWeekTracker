@@ -2,9 +2,10 @@ namespace DataModels.WorkModels.DTOs.RunDTOs;
 
 public class RunDto
 {
-	public int RunId { get; set; }
-	public int Number { get; set; } = 0;
-	public string LocationArea { get; set; } = String.Empty;
-	public DayOfWeek DayOfWeek { get; set; } 
+	public         int               RunId        { get; set; }
+	public         int               Number       { get; set; } = 0;
+	public         string            LocationArea { get; set; } = String.Empty;
+	public         DayOfWeek         DayOfWeek    { get; set; } 
+	public virtual ICollection<Shop> Shops        { get; set; } = new List<Shop>();
 	
 }
