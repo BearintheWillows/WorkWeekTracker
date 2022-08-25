@@ -17,12 +17,20 @@
 
                 <Collapse @key=" item " Visible="@Collapsible[ index ]">
                     <CollapseHeader>
-                        <Heading>
+                        <Headin class="d-flex flex-row justify-content-between p-1">
 
-                            <Button Clicked="@(() => Collapsible[ index ] = !Collapsible[ index ] )">
-                                Run Id: @item.Number
-                            </Button>
-                        </Heading>
+                            <span class="p-1 "><h5>Run Number: @item.Number</h5></span>
+                                @if ( GetShops( item.RunId ).Count > 0 )
+                                {
+                                    <Button class="btn btn-primary  " Clicked="@(() => Collapsible[ index ] = !Collapsible[ index ] )">
+                                    @item.Shops.Count Shops
+                                    </Button>  
+                                } else
+                                {
+                                    <p></p>
+                                }
+                                    
+                        </Headin>
                     </CollapseHeader>
                     <CollapseBody>
                         <DataGrid TItem="Shop"

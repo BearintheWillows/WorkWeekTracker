@@ -4,9 +4,9 @@ using DataModels.WorkModels;
 
 public static class SeedData
 {
-	public static void EnsurePopulated(DataContext context)
+	public static void EnsurePopulated(DataContext? context)
 	{
-		if ( !context.Breaks.Any() )
+		if ( !context.Breaks.Any())
 		{
 			var shop1 = new Shop
 				{
@@ -47,16 +47,38 @@ public static class SeedData
 			var shop10 = new Shop
 				{
 				Name = "Shop 10", Address1 = "Address 10", City = "Derby", PostCode = "DE1 1DE",
-				};              
-			var run1 = new Run { Number = 68, LocationArea = "London", DayOfWeek = DayOfWeek.Monday };
-			var run3 = new Run { Number = 68, LocationArea = "London", DayOfWeek = DayOfWeek.Tuesday };
-			var run4 = new Run { Number = 14, LocationArea = "Northants", DayOfWeek = DayOfWeek.Monday };
-			var run5 = new Run { Number = 14, LocationArea = "Northants", DayOfWeek = DayOfWeek.Tuesday };
-			var run6 = new Run { Number = 14, LocationArea = "Northants", DayOfWeek = DayOfWeek.Wednesday };
-			var run7 = new Run { Number = 24, LocationArea = "Midlands", DayOfWeek = DayOfWeek.Monday };
-			var run8 = new Run { Number = 25, LocationArea = "Essex", DayOfWeek = DayOfWeek.Monday };
-			var run9 = new Run { Number = 25, LocationArea = "Essex", DayOfWeek = DayOfWeek.Saturday };
-			var runSpare = new Run { LocationArea = "Depot", DayOfWeek = DayOfWeek.Monday };
+				};
+			var run11 = new Run { Number = 68, LocationArea = "Norwich", DayOfWeek = DayOfWeek.Monday };
+			var run12 = new Run { Number = 68, LocationArea = "Norwich", DayOfWeek = DayOfWeek.Tuesday };
+			var run13 = new Run { Number = 68, LocationArea = "Norwich", DayOfWeek = DayOfWeek.Wednesday };
+			var run14 = new Run { Number = 68, LocationArea = "Norwich", DayOfWeek = DayOfWeek.Thursday };
+			var run15 = new Run { Number = 68, LocationArea = "Norwich", DayOfWeek = DayOfWeek.Friday };
+			var run16 = new Run { Number = 68, LocationArea = "Norwich", DayOfWeek = DayOfWeek.Saturday };
+			var run17 = new Run { Number = 68, LocationArea = "Norwich", DayOfWeek = DayOfWeek.Sunday };
+
+			var run21 = new Run { Number = 14, LocationArea = "Northampton", DayOfWeek = DayOfWeek.Monday };
+			var run22 = new Run { Number = 14, LocationArea = "Northampton", DayOfWeek = DayOfWeek.Tuesday };
+			var run23 = new Run { Number = 14, LocationArea = "Northampton", DayOfWeek = DayOfWeek.Wednesday };
+			var run24 = new Run { Number = 14, LocationArea = "Northampton", DayOfWeek = DayOfWeek.Thursday };
+			var run25 = new Run { Number = 14, LocationArea = "Northampton", DayOfWeek = DayOfWeek.Friday };
+			var run26 = new Run { Number = 14, LocationArea = "Northampton", DayOfWeek = DayOfWeek.Saturday };
+			var run27 = new Run { Number = 14, LocationArea = "Northampton", DayOfWeek = DayOfWeek.Sunday };
+
+			var run31 = new Run { Number = 65, LocationArea = "Corby", DayOfWeek = DayOfWeek.Monday };
+			var run32 = new Run { Number = 65, LocationArea = "Corby", DayOfWeek = DayOfWeek.Tuesday };
+			var run33 = new Run { Number = 65, LocationArea = "Corby", DayOfWeek = DayOfWeek.Wednesday };
+			var run34 = new Run { Number = 65, LocationArea = "Corby", DayOfWeek = DayOfWeek.Thursday };
+			var run35 = new Run { Number = 65, LocationArea = "Corby", DayOfWeek = DayOfWeek.Friday };
+			var run36 = new Run { Number = 65, LocationArea = "Corby", DayOfWeek = DayOfWeek.Saturday };
+			var run37 = new Run { Number = 65, LocationArea = "Corby", DayOfWeek = DayOfWeek.Sunday };
+
+			var run41 = new Run { Number = 0, LocationArea = "Depot", DayOfWeek = DayOfWeek.Monday };
+			var run42 = new Run { Number = 0, LocationArea = "Depot", DayOfWeek = DayOfWeek.Tuesday };
+			var run43 = new Run { Number = 0, LocationArea = "Depot", DayOfWeek = DayOfWeek.Wednesday };
+			var run44 = new Run { Number = 0, LocationArea = "Depot", DayOfWeek = DayOfWeek.Thursday };
+			var run45 = new Run { Number = 0, LocationArea = "Depot", DayOfWeek = DayOfWeek.Friday };
+			var run46 = new Run { Number = 0, LocationArea = "Depot", DayOfWeek = DayOfWeek.Saturday };
+			var run47 = new Run { Number = 0, LocationArea = "Depot", DayOfWeek = DayOfWeek.Sunday };
 
 			var b1 = new Break
 				{
@@ -102,26 +124,26 @@ public static class SeedData
 				EndTime = DateTime.Parse( "17:00" ),
 				};
 
-			
-			shift1.Runs.Add( run5 );
-			shift2.Runs.Add( run8 );
+
+			shift1.Runs.Add( run25 );
+			shift2.Runs.Add( run26 );
 			shift1.Breaks.Add( b1 );
 			shift1.Breaks.Add( b2 );
 			shift2.Breaks.Add( b3 );
-			
-			run8.Shops.Add( shop4);
-			run8.Shops.Add(shop5  );
-			run8.Shops.Add( shop6 ); 
-			run5.Shops.Add( shop1);
-			run5.Shops.Add( shop2 );
-			run5.Shops.Add( shop3 );
-			shift1.Runs.Add( runSpare );
-			
+
+			run23.Shops.Add( shop4 );
+			run23.Shops.Add( shop5 );
+			run23.Shops.Add( shop6 );
+			run12.Shops.Add( shop1 );
+			run12.Shops.Add( shop2 );
+			run12.Shops.Add( shop3 );
+			shift1.Runs.Add( run41 );
+
 			context.Shifts.AddRange( shift1, shift2 );
-			context.Runs.AddRange( run1, run3, run4, run5, run6, run7, run8, run9 );
+			context.Runs.AddRange( run11, run12, run13, run14, run15, run16, run17, run21, run22, run23, run24, run25, run26, run27, run31, run32, run34, run33, run35, run36, run37);
 			context.Shops.AddRange( shop1, shop2, shop3, shop4, shop5, shop6, shop7, shop8, shop9, shop10 );
 			context.Breaks.AddRange( b1, b2, b3, b4, b5, b6 );
-		context.SaveChanges();
+			context.SaveChanges();
 		}
 	}
 }

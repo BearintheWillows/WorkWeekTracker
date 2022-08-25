@@ -9,9 +9,10 @@ using Microsoft.AspNetCore.Components;
 public partial class RunList
 {
 	[Inject]
-	public HttpClient? Http { get; set; }
-	public bool[]       Collapsible = new bool[15];
-	public RunDetailDto SelectedBaseRun;
+	public HttpClient? Http { get;                set; }
+	public        bool[]?      Collapsible { get; set; }
+	public        RunDetailDto SelectedBaseRun;
+	public static int          ArraySize { get; set; }
 	
 	
 	[Parameter]
@@ -25,13 +26,17 @@ public partial class RunList
 
 		await base.OnInitializedAsync();
 		await UpdateData();
-		
+		Collapsible = new bool[ ArraySize ];
+
 	}
 	private async Task UpdateData()
 	{
 		if (Http != null) {
 			Runs = await Http.GetFromJsonAsync<ICollection<RunDetailDto>>("/api/run") ?? new List<RunDetailDto>();
 		}
+		ArraySize = Runs.Count + 1;
+		Console.WriteLine(ArraySize);
+		
 		
 	}
 	
