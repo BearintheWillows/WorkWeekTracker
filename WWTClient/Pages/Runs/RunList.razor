@@ -1,42 +1,52 @@
 @page "/runs"
 @using DataModels.WorkModels.DTOs.RunDTOs
+@using System.Xml.XPath
+@using Blazorise.States
 
 @if ( Runs != null )
 {
-
     <h5 class="bg-primary text-white text-center p-2">Runs (WebAssembly)</h5>
 
     <Accordion>
-        @foreach ( var item in Runs )
-        {
-            <Collapse Visible="@collapse1Visible">
-                <CollapseHeader>
-                    <Heading Size="HeadingSize.Is2">
-                        <Button Clicked="@(() => collapse1Visible = !collapse1Visible )">
-                            Run Id: @item.Number
-                        </Button>
-                    </Heading>
-                </CollapseHeader>
-                <CollapseBody>
-                    <Table>
-                        <TableHeader>
-                            <TableHeaderCell>Name</TableHeaderCell>
-                            <TableHeaderCell>Address</TableHeaderCell>
-                            <TableHeaderCell>PostCode</TableHeaderCell>
-                        </TableHeader>
-                        <TableBody>
-                            @foreach ( var s in item.Shops )
-                            {
-                                <TableRow>
-                                    <TableRowCell>@s.Name</TableRowCell>
-                                    <TableRowCell>@s.Address1</TableRowCell>
-                                    <TableRowCell>@s.PostCode</TableRowCell>
-                                </TableRow>
-                            }
-                        </TableBody>
-                    </Table>
-                </CollapseBody>
-            </Collapse>
+        @{
+            int i = 0;
+
+            foreach ( var item in Runs )
+            {
+                int index = i;
+
+                <Collapse @key=" item " Visible="@Collapsible[ index ]">
+                    <CollapseHeader>
+                        <Heading>
+
+                            <Button Clicked="@(() => Collapsible[ index ] = !Collapsible[ index ] )">
+                                Run Id: @item.Number - @index.ToString() - Shop Count: @item.ShopCount
+                            </Button>
+                        </Heading>
+                    </CollapseHeader>
+                    <CollapseBody>
+                        <Table>
+                            <TableHeader>
+                                <TableHeaderCell>Name</TableHeaderCell>
+                                <TableHeaderCell>Address</TableHeaderCell>
+                                <TableHeaderCell>PostCode</TableHeaderCell>
+                            </TableHeader>
+                            <TableBody>
+                                @foreach ( var s in item.Shops )
+                                {
+                                    <TableRow>
+                                        <TableRowCell>@s.Name</TableRowCell>
+                                        <TableRowCell>@s.Address1</TableRowCell>
+                                        <TableRowCell>@s.PostCode</TableRowCell>
+                                    </TableRow>
+                                }
+                            </TableBody>
+                        </Table>
+                    </CollapseBody>
+                </Collapse>
+
+                 i = i + 1;
+            }
         }
     </Accordion>
 } else

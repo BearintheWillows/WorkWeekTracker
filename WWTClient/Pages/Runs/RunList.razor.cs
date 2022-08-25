@@ -10,50 +10,47 @@ public partial class RunList
 {
 	[Inject]
 	public HttpClient? Http { get; set; }
-
-	private bool collapse1Visible = false;
-	private bool collapse2Visible = false;
-	private bool collapse3Visible = false;
-	private bool collapse4Visible = false;
-	
-
-		[Parameter]
-	public ICollection<RunDetailDto>? Runs { get; set; } = new List<RunDetailDto>();
+	public bool[]         Collapsible = new bool[15];
+	// // public RunDetailDto[] NewRuns;
+	[Parameter]
+	public static ICollection<RunDetailDto>? Runs { get; set; } = new List<RunDetailDto>();
 
 	public IEnumerable<Shop>? Shops { get; set; } = new List<Shop>();
 
 	protected override async Task OnInitializedAsync()
 	{
+		// NewRuns = Collapsible.Select( x => new RunDetailDto() ).ToArray();
+
 		await base.OnInitializedAsync();
 		await UpdateData();
+		
 	}
 	private async Task UpdateData()
 	{
 		if (Http != null) {
 			Runs = await Http.GetFromJsonAsync<ICollection<RunDetailDto>>("/api/run") ?? new List<RunDetailDto>();
-			
 		}
 		
 	}
 	
-	public void GetShops(int id)
-	{
-		List<Shop>? shopList = new List<Shop>();
-
-		foreach ( var item in Runs )
-		{
-			if ( item.RunId == id )
-			{
-				foreach ( var s in item.Shops )
-				{
-					shopList.Add( s );
-				}
-			}
-		}
-
-		Shops = shopList;
-		
-	}
+	// public void GetShops(int id)
+	// {
+	// 	List<Shop>? shopList = new List<Shop>();
+	//
+	// 	foreach ( var item in Runs )
+	// 	{
+	// 		if ( item.RunId == id )
+	// 		{
+	// 			foreach ( var s in item.Shops )
+	// 			{
+	// 				shopList.Add( s );
+	// 			}
+	// 		}
+	// 	}
+	//
+	// 	Shops = shopList;
+	// 	
+	// }
 	
 	
 
