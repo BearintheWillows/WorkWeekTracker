@@ -10,8 +10,10 @@ public partial class RunList
 {
 	[Inject]
 	public HttpClient? Http { get; set; }
-	public bool[]         Collapsible = new bool[15];
-	// // public RunDetailDto[] NewRuns;
+	public bool[]       Collapsible = new bool[15];
+	public RunDetailDto SelectedRun;
+	
+	
 	[Parameter]
 	public static ICollection<RunDetailDto>? Runs { get; set; } = new List<RunDetailDto>();
 
@@ -33,24 +35,26 @@ public partial class RunList
 		
 	}
 	
-	// public void GetShops(int id)
-	// {
-	// 	List<Shop>? shopList = new List<Shop>();
-	//
-	// 	foreach ( var item in Runs )
-	// 	{
-	// 		if ( item.RunId == id )
-	// 		{
-	// 			foreach ( var s in item.Shops )
-	// 			{
-	// 				shopList.Add( s );
-	// 			}
-	// 		}
-	// 	}
-	//
-	// 	Shops = shopList;
-	// 	
-	// }
+	public List<Shop>? GetShops(int id)
+	{
+		List<Shop>? shopList = new List<Shop>();
+	
+		foreach ( var item in Runs )
+		{
+			if ( item.RunId == id )
+			{
+				foreach ( var s in item.Shops )
+				{
+					shopList.Add( s );
+				}
+			}
+		}
+
+		return shopList;
+	
+		Shops = shopList;
+		
+	}
 	
 	
 

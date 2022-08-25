@@ -20,32 +20,32 @@
                         <Heading>
 
                             <Button Clicked="@(() => Collapsible[ index ] = !Collapsible[ index ] )">
-                                Run Id: @item.Number - @index.ToString() - Shop Count: @item.ShopCount
+                                Run Id: @item.Number
                             </Button>
                         </Heading>
                     </CollapseHeader>
                     <CollapseBody>
-                        <Table>
-                            <TableHeader>
-                                <TableHeaderCell>Name</TableHeaderCell>
-                                <TableHeaderCell>Address</TableHeaderCell>
-                                <TableHeaderCell>PostCode</TableHeaderCell>
-                            </TableHeader>
-                            <TableBody>
-                                @foreach ( var s in item.Shops )
-                                {
-                                    <TableRow>
-                                        <TableRowCell>@s.Name</TableRowCell>
-                                        <TableRowCell>@s.Address1</TableRowCell>
-                                        <TableRowCell>@s.PostCode</TableRowCell>
-                                    </TableRow>
-                                }
-                            </TableBody>
-                        </Table>
+                        <DataGrid TItem="Shop"
+                                  Data="GetShops( item.RunId )"
+                                  Editable
+                                  Responsive>
+                            <DataGridColumn Field="@nameof( Shop.Name )" Caption="Name" Editable/>
+                            <DataGridColumn Field="@nameof( Shop.City )" Caption="City" Editable/>
+                            <DataGridColumn Field="@nameof( Shop.PostCode)" Caption="PostCode" Editable/>
+                            <DataGridColumn Field="@nameof( Shop.Notes)" Caption="Notes" Editable/>
+                            <DataGridCommandColumn>
+                                <NewCommandTemplate>
+                                    <Button Color="Color.Success" Clicked="context.Clicked ">New</Button>
+                                </NewCommandTemplate>
+                                <EditCommandTemplate>
+                                    <Button Color="Color.Primary" Clicked="context.Clicked ">Edit</Button>
+                                </EditCommandTemplate>
+                            </DataGridCommandColumn>
+                        </DataGrid>
                     </CollapseBody>
                 </Collapse>
 
-                 i = i + 1;
+                i = i + 1;
             }
         }
     </Accordion>
