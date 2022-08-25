@@ -20,9 +20,9 @@ public class RunController : ControllerBase
 	}
 
 	[HttpGet]
-	public async Task<List<RunDto>> GetRuns()
+	public async Task<List<RunDetailDto>> GetRuns()
 	{
-		return _context.Runs.Include( r => r.Shops ).Select( r => new RunDto()
+		return _context.Runs.Include( r => r.Shops ).Select( r => new RunDetailDto()
 			{
 			RunId = r.RunId,
 			Number = r.Number,

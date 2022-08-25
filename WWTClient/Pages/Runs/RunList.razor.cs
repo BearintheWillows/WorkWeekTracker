@@ -11,17 +11,17 @@ public partial class RunList
 	[Inject]
 	public HttpClient? Http { get; set; }
 	public bool[]       Collapsible = new bool[15];
-	public RunDetailDto SelectedRun;
+	public RunDetailDto SelectedBaseRun;
 	
 	
 	[Parameter]
-	public static ICollection<RunDetailDto>? Runs { get; set; } = new List<RunDetailDto>();
+	public static ICollection<RunDetailDto> Runs { get; set; } = new List<RunDetailDto>();
 
 	public IEnumerable<Shop>? Shops { get; set; } = new List<Shop>();
 
 	protected override async Task OnInitializedAsync()
 	{
-		// NewRuns = Collapsible.Select( x => new RunDetailDto() ).ToArray();
+		// NewRuns = Collapsible.Select( x => new BaseRunDetailDto() ).ToArray();
 
 		await base.OnInitializedAsync();
 		await UpdateData();
