@@ -11,10 +11,10 @@ public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : clas
 
 	internal DbSet<TEntity> _dbSet;
 
-	public BaseRepository(DataContext context, DbSet<TEntity> dbSet)
+	public BaseRepository(DataContext context)
 	{
 		_context = context;
-		_dbSet = dbSet;
+		_dbSet = context.Set<TEntity>();
 	}
 	
 
