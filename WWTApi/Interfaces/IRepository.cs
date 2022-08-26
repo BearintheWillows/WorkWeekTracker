@@ -47,4 +47,11 @@ public interface IRepository<TEntity> where TEntity : class
 	/// </summary>
 	/// <param name="entityToUpdate"></param>
 	void Update(TEntity entityToUpdate);
+
+	/// <summary>
+	/// Replicates the Include method of a database
+	/// </summary>
+	/// <param name="includes"></param>
+	/// <returns></returns>
+	IQueryable<TEntity> Include(params Expression<Func<TEntity, object>>[] includes);
 }

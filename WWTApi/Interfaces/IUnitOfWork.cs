@@ -4,9 +4,9 @@ using DataModels.WorkModels;
 
 public interface IUnitOfWork
 {
-	IRepository<Run>   Runs   { get; }
-	IRepository<Shift> Shifts { get; }
-	IRepository<Break> Breaks { get; }
-	IRepository<Shop>  Shops  { get; }
+	IRepository<Run>   RunsRepository   { get; }
+	IRepository<Shift> ShiftsRepository { get; }
+	IRepository<Break> BreaksRepository{ get; }
+	IRepository<Shop>  ShopsRepository  { get; }
 	void               Commit();
 }

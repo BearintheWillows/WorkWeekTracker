@@ -16,9 +16,9 @@ public class UnitOfWork : IUnitOfWork
 		_dbContext = dbContext;
 	}
 
-	public       IRepository<Run>   Runs     => _runs ?? ( _runs = new BaseRepository<Run>( _dbContext ) );
-	public       IRepository<Shift> Shifts   => _shifts ?? ( _shifts = new BaseRepository<Shift>( _dbContext ) );
-	public       IRepository<Break> Breaks   => _breaks ?? ( _breaks = new BaseRepository<Break>( _dbContext ) );
-	public       IRepository<Shop>  Shops    => _shops ?? ( _shops = new BaseRepository<Shop>( _dbContext ) );
+	public       IRepository<Run>   RunsRepository     => _runs ?? ( _runs = new BaseRepository<Run>( _dbContext ) );
+	public       IRepository<Shift> ShiftsRepository   => _shifts ?? ( _shifts = new BaseRepository<Shift>( _dbContext ) );
+	public       IRepository<Break> BreaksRepository   => _breaks ?? ( _breaks = new BaseRepository<Break>( _dbContext ) );
+	public       IRepository<Shop>  ShopsRepository    => _shops ?? ( _shops = new BaseRepository<Shop>( _dbContext ) );
 	public async void               Commit() => await _dbContext.SaveChangesAsync();
 }

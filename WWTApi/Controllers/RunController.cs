@@ -6,6 +6,7 @@ using DataModels.WorkModels.DTOs.RunDTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Data;
+using Data.Repository;
 using DataModels.WorkModels;
 
 [ApiController]
@@ -13,16 +14,18 @@ using DataModels.WorkModels;
 public class RunController : ControllerBase
 {
 	private DataContext _context;
+	private UnitOfWork  _unitOfWork;
 
 	public RunController(DataContext context)
 	{
 		_context = context;
+		_unitOfWork = new UnitOfWork(_context);
 	}
 
 	[HttpGet]
 	public async Task<List<RunDetailDto>> GetRuns()
 	{
-		return _context.Runs.Include( r => r.Shops ).Select( r => new RunDetailDto()
+		return _unitOfWork.RunsRepository.Include( r => r.Shops ).Select( r => new RunDetailDto()
 			{
 			RunId = r.RunId,
 			Number = r.Number,
