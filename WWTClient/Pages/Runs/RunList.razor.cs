@@ -11,12 +11,12 @@ public partial class RunList
 	[Inject]
 	public HttpClient? Http { get;                set; }
 	public        bool[]?      Collapsible { get; set; }
-	public        RunDetailDto SelectedBaseRun;
+	public        RunDto SelectedBaseRun;
 	public static int          ArraySize { get; set; }
 	
 	
 	[Parameter]
-	public static ICollection<RunDetailDto> Runs { get; set; } = new List<RunDetailDto>();
+	public static ICollection<RunDto> Runs { get; set; } = new List<RunDto>();
 
 	public IEnumerable<Shop>? Shops { get; set; } = new List<Shop>();
 
@@ -32,7 +32,7 @@ public partial class RunList
 	private async Task UpdateData()
 	{
 		if (Http != null) {
-			Runs = await Http.GetFromJsonAsync<ICollection<RunDetailDto>>("/api/run") ?? new List<RunDetailDto>();
+			Runs = await Http.GetFromJsonAsync<ICollection<RunDto>>("/api/run") ?? new List<RunDto>();
 		}
 		ArraySize = Runs.Count + 1;
 		Console.WriteLine(ArraySize);

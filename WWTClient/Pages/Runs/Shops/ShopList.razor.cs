@@ -13,7 +13,7 @@ public partial class ShopList
 	public long Id { get; set; }
 
 	[Parameter]
-	public RunDetailDto? Run { get; set; } = new();
+	public RunDto? Run { get; set; } = new();
 
 
 	protected override async Task OnParametersSetAsync()
@@ -25,7 +25,7 @@ public partial class ShopList
 	{
 		if ( Http != null )
 		{
-			Run = await Http.GetFromJsonAsync<RunDetailDto>( $"/api/Run/{Id}/Shops" ) ?? new RunDetailDto();
+			Run = await Http.GetFromJsonAsync<RunDto>( $"/api/Run/{Id}/Shops" ) ?? new RunDto();
 		}
 	}
 	

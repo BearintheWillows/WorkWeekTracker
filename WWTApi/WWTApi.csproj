@@ -24,4 +24,8 @@
       <ProjectReference Include="..\WWTClient\WWTClient.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Services" />
+    </ItemGroup>
+
 </Project>

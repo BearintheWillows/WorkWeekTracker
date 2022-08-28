@@ -24,26 +24,10 @@ public class RunController : ControllerBase
 	}
 
 	[HttpGet]
-	// public async Task<List<RunDetailDto>> GetRuns()
-	// {
-	// 	return _unitOfWork.RunsRepository.Include( r => r.Shops ).Select( r => new RunDetailDto()
-	// 		{
-	// 		RunId = r.RunId,
-	// 		Number = r.Number,
-	// 		DayOfWeek = r.DayOfWeek,
-	// 		Shops = r.Shops.Select( s => new Shop
-	// 				{
-	// 				Name = s.Name,
-	// 				Address1 = s.Address1,
-	// 				City = s.City,
-	// 				County = s.County,
-	// 				PostCode = s.PostCode,
-	// 				Notes = s.Notes,
-	// 				}
-	// 		).ToList(),
-	// 		}
-	// 	).ToList();
-	// }
+	 public async Task<List<RunDto>> GetRuns()
+	 {
+		 return await _runRepository.GetAllRuns();
+	 }
 
 	[HttpGet( "{id}" )]
 	public async Task<Run?> GetRun(int id)
@@ -53,7 +37,7 @@ public class RunController : ControllerBase
 	}
 
 	[HttpGet( "{id}/shops")]
-	public async Task<List<RunDetailDto>> GetRunShops(int id)
+	public async Task<List<RunDto>> GetRunShops(int id)
 	{
 		return await _runRepository.GetRunShopsById( id );
 	}

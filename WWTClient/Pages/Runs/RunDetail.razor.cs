@@ -14,7 +14,7 @@ public partial class RunDetail
 	public int? Id { get; set; } = 0;
 
 	[Parameter]
-	public RunDetailDto? Run { get; set; } = new();
+	public RunDto? Run { get; set; } = new();
 
 	protected override async Task OnInitializedAsync() => await UpdateData();
 
@@ -22,7 +22,7 @@ public partial class RunDetail
 	{
 		if ( Http != null )
 		{
-			Run = await Http.GetFromJsonAsync<RunDetailDto>( $"/api/run/{Id}" ) ?? new RunDetailDto();
+			Run = await Http.GetFromJsonAsync<RunDto>( $"/api/run/{Id}" ) ?? new RunDto();
 		}
 	}
 	
