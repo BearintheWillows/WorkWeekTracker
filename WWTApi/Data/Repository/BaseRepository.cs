@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Query;
 
 public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class
 {
-	internal DataContext _context;
+	internal readonly DataContext _context;
 
 	internal DbSet<TEntity> _dbSet;
 
@@ -19,39 +19,23 @@ public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : clas
 	}
 	
 
-	public virtual IEnumerable<TEntity> Get(
-		Expression<Func<TEntity, bool>>                       filter            = null,
-		Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy           = null,
-		string                                                includeProperties = "")
+	public virtual IQueryable<TEntity> GetAll() 
 	{
-		IQueryable<TEntity> query = _dbSet;
-
-		if (filter != null)
+		try
 		{
-			query = query.Where(filter);
+			return _context.Set<TEntity>();
 		}
-
-		if (includeProperties != null)
+		catch ( Exception e )
 		{
-			foreach (var includeProperty in includeProperties.Split
-				         (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-			{
-				query = query.Include(includeProperty);
-			}
-		}
-            
-
-		if (orderBy != null)
-		{
-			return orderBy(query).ToList();
-		}
-		else
-		{
-			return query.ToList();
+			Console.WriteLine( $"Couldn't retrieve entities: {e.Message}" );
+			throw;
 		}
 	}
 
-	public virtual TEntity GetById(object id)
+
+	public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "") => throw new NotImplementedException();
+
+	public virtual TEntity GetById(object? id)
 	{
 		return _dbSet.Find(id);
 	}

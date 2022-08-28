@@ -11,7 +11,6 @@ public class Shop
 	public string? County   { get; set; }
 	public string  PostCode { get; set; } = string.Empty;
 	public string? Notes    { get; set; }
-	
 	//Navigation Properties
-	public virtual ICollection<Run> Runs { get; set; } = new List<Run>();
+	public virtual List<Run> Runs { get; set; } = new List<Run>();
 }

@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WWTApi.Data;
+using WWTApi.Data.Repository;
+using WWTApi.Interfaces;
 
 var builder = WebApplication.CreateBuilder( args );
 
@@ -17,6 +19,10 @@ builder.Services.AddDbContext<DataContext>(opts => {
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+builder.Services.AddTransient(typeof(IRepository<>), typeof(BaseRepository<>));
+builder.Services.AddTransient<IRunRepository, RunRepository>();
 
 var app = builder.Build();
 

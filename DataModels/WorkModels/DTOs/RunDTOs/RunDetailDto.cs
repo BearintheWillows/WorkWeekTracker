@@ -7,5 +7,5 @@ public class RunDetailDto: BaseRunDto
 	public int     ShopCount    { get; set; } = 0;
 	
 	public virtual ICollection<Shift> Shifts { get; set; } = new List<Shift>();
-	public virtual ICollection<Shop>             Shops  { get; set; } = new List<Shop>();
+	public virtual List<Shop>             Shops  { get; set; } = new List<Shop>();
 }

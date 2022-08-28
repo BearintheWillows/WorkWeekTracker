@@ -7,7 +7,6 @@ using WWTClient;
 
 var builder = WebAssemblyHostBuilder.CreateDefault( args );
 
-
 builder.Services
        .AddBlazorise( options =>
         {
