@@ -9,9 +9,16 @@ public class DataContext : DbContext
 		: base( options )
 	{ }
 	
-	public DbSet<Shift> Shifts { get; set; }
 	public DbSet<Run>   Runs   { get; set; }
-	public DbSet<Break> Breaks { get; set; }
+	
 	public DbSet<Shop>  Shops  { get; set; }
 
+	public DbSet<DailyRoutePlan> DailyRoutePlans { get; set; }
+	
+	protected override void OnModelCreating(ModelBuilder modelBuilder)
+	{
+		modelBuilder.Entity<DailyRoutePlan>()
+		            .HasAlternateKey( p => new { p.ShopId, p.DayOfWeek } )
+		            .HasName( "ShopUniqueKey" );
+	}
 }

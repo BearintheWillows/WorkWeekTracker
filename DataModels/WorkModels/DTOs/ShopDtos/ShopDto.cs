@@ -2,7 +2,7 @@ namespace DataModels.WorkModels.DTOs.ShopDtos;
 
 public class ShopDto
 {
-	public int     ShopId   { get; set; }
+	public int     ID   { get; set; }
 	public string  Name     { get; set; } = String.Empty;
 	public string  Address1 { get; set; } = String.Empty;
 	public string? Address2 { get; set; } = String.Empty;
@@ -13,5 +13,5 @@ public class ShopDto
 	public string? Notes    { get; set; } = String.Empty;
 	
 	//Navigation Properties
-	public virtual ICollection<Run> Runs { get; set; } = new List<Run>();
+	public virtual ICollection<Run>         Runs         { get; set; } = new List<Run>();
 }

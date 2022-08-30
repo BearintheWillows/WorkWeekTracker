@@ -21,7 +21,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DataModels\DataModels.csproj" />
-      <ProjectReference Include="..\WWTClient\WWTClient.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -12,14 +12,16 @@ public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : clas
 
 	internal DbSet<TEntity> _dbSet;
 
+	private bool disposed = false;
+
 	public BaseRepository(DataContext context)
 	{
 		_context = context;
 		_dbSet = context.Set<TEntity>();
 	}
-	
 
-	public virtual IQueryable<TEntity> GetAll() 
+
+	public virtual IQueryable<TEntity> GetAll()
 	{
 		try
 		{
@@ -33,53 +35,77 @@ public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : clas
 	}
 
 
-	public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "") => throw new NotImplementedException();
+	public IEnumerable<TEntity> Get(
+		Expression<Func<TEntity, bool>>                       filter            = null,
+		Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy           = null,
+		string                                                includeProperties = ""
+	) => throw new NotImplementedException();
 
 	public virtual TEntity GetById(object? id)
 	{
-		return _dbSet.Find(id);
+		return _dbSet.Find( id );
 	}
 
 	public virtual void Insert(TEntity entity)
 	{
-		_dbSet.Add(entity);
+		_dbSet.Add( entity );
 	}
 
 	public virtual void Delete(object id)
 	{
-		TEntity entityToDelete = _dbSet.Find(id);
-		Delete(entityToDelete);
+		TEntity entityToDelete = _dbSet.Find( id );
+		Delete( entityToDelete );
 	}
 
 	public virtual void Delete(TEntity entityToDelete)
 	{
-		if (_context.Entry(entityToDelete).State == EntityState.Detached)
+		if ( _context.Entry( entityToDelete ).State == EntityState.Detached )
 		{
-			_dbSet.Attach(entityToDelete);
+			_dbSet.Attach( entityToDelete );
 		}
-		_dbSet.Remove(entityToDelete);
+
+		_dbSet.Remove( entityToDelete );
 	}
 
 	public virtual void Update(TEntity entityToUpdate)
 	{
-		_dbSet.Attach(entityToUpdate);
-		_context.Entry(entityToUpdate).State = EntityState.Modified;
+		_dbSet.Attach( entityToUpdate );
+		_context.Entry( entityToUpdate ).State = EntityState.Modified;
 	}
 
 	public IQueryable<TEntity> Include(params Expression<Func<TEntity, object>>[] includes)
 	{
 		IIncludableQueryable<TEntity, object> query = null;
 
-		if(includes.Length > 0)
+		if ( includes.Length > 0 )
 		{
-			query = _dbSet.Include(includes[0]);
-		}
-		for (int queryIndex = 1; queryIndex < includes.Length; ++queryIndex)
-		{
-			query = query.Include(includes[queryIndex]);
+			query = _dbSet.Include( includes[ 0 ] );
 		}
 
-		return query == null ? _dbSet : (IQueryable<TEntity>)query;
+		for ( int queryIndex = 1; queryIndex < includes.Length; ++queryIndex )
+		{
+			query = query.Include( includes[ queryIndex ] );
+		}
+
+		return query == null ? _dbSet : ( IQueryable<TEntity> ) query;
 	}
 
+	protected virtual void Dispose(bool disposing)
+	{
+		if ( !this.disposed )
+		{
+			if ( disposing )
+			{
+				_context.Dispose();
+			}
+		}
+
+		this.disposed = true;
+	}
+
+	public void Dispose()
+	{
+		Dispose(true);
+		GC.SuppressFinalize( this );
+	}
 }

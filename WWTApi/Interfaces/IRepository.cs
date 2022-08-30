@@ -11,7 +11,7 @@ public interface IRepository<TEntity> where TEntity : class
 	void Delete(TEntity entityToDelete);
 
 	/// <summary>
-	/// Interface to Delete an object by matching ID
+	/// Interface to Delete an object by matching Id
 	/// </summary>
 	/// <param name="id"></param>
 	void Delete(object id);
