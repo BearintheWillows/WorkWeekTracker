@@ -1,12 +1,13 @@
 namespace WWTApi.Interfaces;
 
 using DataModels.WorkModels;
-using DataModels.WorkModels.DTOs.RunDTOs;
 
-public interface IRunRepository : IRepository<Run>
+public interface IRunRepository : IDisposable
 {
-	Task<List<RunDto>>             GetAllRuns();
-	Task<Run?>                     GetRunByIdAsync(int id);
-	Task<Task<List<DailyRoutePlan>>> GetRunShopsById(int id);
-	
+	Task<IEnumerable<Run>> GetRuns();
+	Run              GetRunById(int id);
+	void             InsertRun(Run  run);
+	void             DeleteRun(int  id);
+	void             UpdateRun(Run  run);
+	void             Save();
 }

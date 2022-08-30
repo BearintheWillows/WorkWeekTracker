@@ -8,7 +8,8 @@ public class DataContext : DbContext
 	public DataContext(DbContextOptions<DataContext> options)
 		: base( options )
 	{ }
-	
+
+
 	public DbSet<Run>   Runs   { get; set; }
 	
 	public DbSet<Shop>  Shops  { get; set; }
