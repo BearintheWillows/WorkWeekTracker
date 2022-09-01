@@ -11,7 +11,7 @@ using WWTApi.Data;
 namespace WWTApi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220901190515_Initial")]
+    [Migration("20220901221407_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -108,7 +108,7 @@ namespace WWTApi.Migrations
                         .IsRequired();
 
                     b.HasOne("DataModels.WorkModels.Shop", "Shop")
-                        .WithMany()
+                        .WithMany("DailyRoutePlans")
                         .HasForeignKey("ShopId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -119,6 +119,11 @@ namespace WWTApi.Migrations
                 });
 
             modelBuilder.Entity("DataModels.WorkModels.Run", b =>
+                {
+                    b.Navigation("DailyRoutePlans");
+                });
+
+            modelBuilder.Entity("DataModels.WorkModels.Shop", b =>
                 {
                     b.Navigation("DailyRoutePlans");
                 });

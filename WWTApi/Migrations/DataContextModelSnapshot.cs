@@ -106,7 +106,7 @@ namespace WWTApi.Migrations
                         .IsRequired();
 
                     b.HasOne("DataModels.WorkModels.Shop", "Shop")
-                        .WithMany()
+                        .WithMany("DailyRoutePlans")
                         .HasForeignKey("ShopId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -117,6 +117,11 @@ namespace WWTApi.Migrations
                 });
 
             modelBuilder.Entity("DataModels.WorkModels.Run", b =>
+                {
+                    b.Navigation("DailyRoutePlans");
+                });
+
+            modelBuilder.Entity("DataModels.WorkModels.Shop", b =>
                 {
                     b.Navigation("DailyRoutePlans");
                 });

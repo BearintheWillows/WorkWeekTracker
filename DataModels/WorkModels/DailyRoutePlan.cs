@@ -8,7 +8,7 @@ public class DailyRoutePlan
     public int       ShopId    { get; set; }
     public DayOfWeek DayOfWeek { get; set; }
 
-   public Run  Run  { get; set; }
-   public Shop Shop { get; set; }
+   public Shop Shop {get; set;}
+   public Run Run {get; set;}
 
 }

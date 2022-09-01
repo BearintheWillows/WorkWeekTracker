@@ -7,6 +7,6 @@ public class RunDto
 	public int     ShiftCount   { get; set; } = 0;
 	public int     ShopCount    { get; set; } = 0;
 	
-	public virtual List<Shop> Shops { get; set; } = new List<Shop>();
+	public virtual List<ShopDto> Shops { get; set; } = new List<ShopDto>();
 	
 }

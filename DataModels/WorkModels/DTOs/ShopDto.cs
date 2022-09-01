@@ -1,8 +1,11 @@
 namespace DataModels.WorkModels.DTOs;
 
+using System.Text.Json.Serialization;
+
 public class ShopDto
 {
 	public int     ID   { get; set; }
+	
 	public string  Name     { get; set; } = String.Empty;
 	public string  Address1 { get; set; } = String.Empty;
 	public string? Address2 { get; set; } = String.Empty;

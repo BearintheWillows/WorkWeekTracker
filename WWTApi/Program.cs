@@ -1,3 +1,5 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using WWTApi.Data;
 
@@ -13,6 +15,11 @@ builder.Services.AddDbContext<DataContext>(opts => {
 });
 
 
+
+
+
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -22,7 +29,6 @@ builder.Services.AddSwaggerGen();
 // builder.Services.AddTransient<IRunRepository, RunRepository>();
 
 var app = builder.Build();
-
 
 
 
