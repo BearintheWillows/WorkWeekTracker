@@ -4,13 +4,13 @@ using WWTApi.Data;
 var builder = WebApplication.CreateBuilder( args );
 
 // Add services to the container.
+
+builder.Services.AddControllers();
+
 builder.Services.AddDbContext<DataContext>(opts => {
 	opts.UseSqlServer(builder.Configuration["ConnectionStrings:WWTConnection"]);
 	opts.EnableSensitiveDataLogging(true);
 });
-
-builder.Services.AddControllers();
-
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
