@@ -1,15 +1,14 @@
 namespace WWTApi.Data;
 
 using DataModels.WorkModels;
+using Microsoft.EntityFrameworkCore;
 
 public class SeedData
 {
 	public static void EnsurePopulated(DataContext? context)
 	{
-		if ( !context.DailyRoutePlans.Any())
+		if ( !context.DailyRoutePlans.Any() )
 		{
-
-
 			var runs = new List<Run>
 				{
 				new() { Id = 68, LocationArea = "Norwhich" },
@@ -63,20 +62,14 @@ public class SeedData
 
 			var dailyRoutePlans = new List<DailyRoutePlan>
 				{
-				new() { RunId = 68, ShopId = 7, DayOfWeek = DayOfWeek.Monday },
-				new() { RunId = 68, ShopId = 8, DayOfWeek = DayOfWeek.Monday },
-				new() { RunId = 68, ShopId = 9, DayOfWeek = DayOfWeek.Monday },
-				new() { RunId = 14, ShopId = 1, DayOfWeek = DayOfWeek.Monday },
-				new() { RunId = 14, ShopId = 2, DayOfWeek = DayOfWeek.Monday },
+				new() { RunId = 68, ShopId = 2, DayOfWeek = DayOfWeek.Monday },
+				new() { RunId = 68, ShopId = 4, DayOfWeek = DayOfWeek.Monday },
 				new() { RunId = 14, ShopId = 3, DayOfWeek = DayOfWeek.Monday },
-				new() { RunId = 68, ShopId = 7, DayOfWeek = DayOfWeek.Tuesday },
-				new() { RunId = 68, ShopId = 8, DayOfWeek = DayOfWeek.Tuesday },
-				new() { RunId = 68, ShopId = 9, DayOfWeek = DayOfWeek.Tuesday },
+				new() { RunId = 68, ShopId = 3, DayOfWeek = DayOfWeek.Tuesday },
 				};
 
 			dailyRoutePlans.ForEach( d => context?.DailyRoutePlans.Add( d ) );
 			context?.SaveChanges();
 		}
 	}
-
 }

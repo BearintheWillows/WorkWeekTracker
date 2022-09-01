@@ -1,4 +1,4 @@
-namespace DataModels.WorkModels.DTOs.ShopDtos;
+namespace DataModels.WorkModels.DTOs;
 
 public class ShopDto
 {

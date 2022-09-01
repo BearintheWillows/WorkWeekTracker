@@ -12,8 +12,5 @@ public class Shop
 	public string? County      { get; set; }
 	public string  PostCode    { get; set; } = string.Empty;
 	public string? Notes       { get; set; }
-
-	//Navigation Properties
-	public virtual ICollection<DailyRoutePlan> DailyRoutePlans { get; set; }
-
+	
 }
