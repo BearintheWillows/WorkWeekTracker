@@ -8,33 +8,32 @@ var builder = WebApplication.CreateBuilder( args );
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddCors();
 
 builder.Services.AddDbContext<DataContext>(opts => {
 	opts.UseSqlServer(builder.Configuration["ConnectionStrings:WWTConnection"]);
 	opts.EnableSensitiveDataLogging(true);
 });
 
-
-
-
-
-
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-
-// builder.Services.AddTransient<IRunRepository, RunRepository>();
+// Configure the HTTP request pipeline
 
 var app = builder.Build();
 
-
-
 app.UseHttpsRedirection();
+
+app.UseCors( x => x.AllowAnyHeader()
+                   .AllowAnyMethod()
+                   .AllowCredentials()
+                   .WithOrigins( "https://localhost:4200" )
+);
+
+app.UseDefaultFiles();
 app.UseStaticFiles();
-app.UseRouting();
 
 app.MapControllers();
 app.MapDefaultControllerRoute();
