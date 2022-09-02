@@ -1,0 +1,9 @@
+<h2>{{run.id}}</h2>
+<div><span>Id: </span>{{run.id}}</div>
+<div><span>Location: </span>{{run.location | uppercase}}</div>
+
+
+<div>
+  <label for="RunId">Run Id: </label>
+  <input id="RunId" [(ngModel)]="run.id" placeholder="Run Id">
+</div>

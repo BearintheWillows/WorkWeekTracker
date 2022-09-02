@@ -77,7 +77,7 @@ public class RunController : ControllerBase
 			{
 			Id = run.Id,
 			LocationArea = run.LocationArea,
-			DailyRoutePlans = new List<DailyRoutePlan>();
+			DailyRoutePlans = new List<DailyRoutePlan>()
 			};
 
 		_dataContext?.AddAsync( newRun );
