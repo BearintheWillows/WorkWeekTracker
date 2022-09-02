@@ -8,10 +8,7 @@ import { Run } from '../../_models/run';
 })
 export class RunListComponent implements OnInit {
 
-  run: Run = {
-    id: 1,
-    location: "March"
-  }
+  runs: Run[];
 
   constructor() { }
 
