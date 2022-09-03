@@ -1,0 +1,12 @@
+<div *ngIf="run" >
+  <h2>Run Number: {{run.id}} Details</h2>
+
+  <div>
+    <label for="runId">Id: </label>
+    <input id="runId" [(ngModel)]="run.id" placeholder="Id">
+    <label for="runLoc">Location</label>
+    <input id="runLoc" [(ngModel)]="run.location" placeholder="Location">
+  </div>
+
+
+</div>

@@ -9,11 +9,14 @@ import {HttpClient} from "@angular/common/http";
 export class RunsService {
 
   baseUrl = environment.apiUrl;
-  runs: Run[] = [];
+  private runs: Object = [];
 
   constructor(private  http: HttpClient) { }
 
   getRuns(){
+      return this.http.get(this.baseUrl + 'run');
+
+
 
 
   }

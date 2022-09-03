@@ -1,9 +1,15 @@
-<h2>{{run.id}}</h2>
-<div><span>Id: </span>{{run.id}}</div>
-<div><span>Location: </span>{{run.location | uppercase}}</div>
+<h2>Run List</h2>
 
 
-<div>
-  <label for="RunId">Run Id: </label>
-  <input id="RunId" [(ngModel)]="run.id" placeholder="Run Id">
-</div>
+<!--<mat-list class="runs" *ngFor="let run of runs">-->
+<!--  <mat-list-item>-->
+<!--    <button [class.mat-selected]="run === selectedRun" type="button" (click)="onSelect(run)">-->
+<!--      <span class="badge">{{run.id}}</span>-->
+<!--      <span class="name">{{run.location}}</span>-->
+<!--    </button>-->
+<!--  </mat-list-item>-->
+<!--</mat-list>-->
+
+<button (click)="loadData()">click me</button>
+
+<app-run-detail [run]="selectedRun"></app-run-detail>

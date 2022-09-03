@@ -7,11 +7,17 @@ import {RunListComponent} from "./Runs/run-list/run-list.component";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSliderModule} from "@angular/material/slider";
+import {MatListModule} from "@angular/material/list";
+import {RunDetailComponent} from "./Runs/run-detail/run-detail.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     RunListComponent,
+    RunDetailComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -19,6 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    MatSliderModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

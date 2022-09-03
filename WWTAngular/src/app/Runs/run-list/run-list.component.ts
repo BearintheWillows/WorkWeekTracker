@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Run } from '../../_models/run';
+import {RunsService} from "../../_services/runs.service";
 
 @Component({
   selector: 'app-run-list',
@@ -8,11 +9,26 @@ import { Run } from '../../_models/run';
 })
 export class RunListComponent implements OnInit {
 
-  runs: Run[];
+  runs?: Object;
+  selectedRun?: Run
 
-  constructor() { }
+  constructor(private runService: RunsService) { }
 
   ngOnInit(): void {
+    this.loadData()
+  }
+
+  onSelect(run: Run): void {
+    this.selectedRun = run;
+
+  }
+
+  loadData() {
+    this.runService.getRuns().subscribe(res => {
+      this.runs = res;
+      console.log(res)
+    });
+
 
   }
 
