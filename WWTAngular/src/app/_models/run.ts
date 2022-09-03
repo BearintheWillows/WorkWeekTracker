@@ -2,7 +2,7 @@
 export interface Run {
 
   id: number;
-  location: string;
+  locationArea: string;
 
 }
 

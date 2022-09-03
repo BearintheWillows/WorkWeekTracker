@@ -9,7 +9,7 @@ import {RunsService} from "../../_services/runs.service";
 })
 export class RunListComponent implements OnInit {
 
-  runs?: Object;
+  runs?: any;
   selectedRun?: Run
 
   constructor(private runService: RunsService) { }
