@@ -1,0 +1,15 @@
+.toolbar-links {
+  text-decoration: none;
+  background-color: orange;
+  color: royalblue;
+  border-radius: 15px;
+  padding: 0.5em 1em;
+  margin: 0.5em;
+
+}
+
+.toolbar-links:hover {
+  opacity: 85%;
+  background-color: aqua;
+  transition-duration: 0.5s;
+}

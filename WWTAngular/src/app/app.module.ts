@@ -13,6 +13,10 @@ import {RunDetailComponent} from "./Runs/run-detail/run-detail.component";
 import { MessagesComponent } from './messages/messages.component';
 import { NavComponent } from './nav/nav.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { FooterComponent } from './footer/footer.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
   declarations: [
@@ -21,6 +25,8 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     RunDetailComponent,
     MessagesComponent,
     NavComponent,
+    DashboardComponent,
+    FooterComponent,
 
 
   ],
@@ -33,6 +39,8 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     MatSliderModule,
     MatListModule,
     MatToolbarModule,
+    MatButtonModule,
+    MatTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
