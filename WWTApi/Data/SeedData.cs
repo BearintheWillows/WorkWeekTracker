@@ -7,7 +7,7 @@ public class SeedData
 {
 	public static void EnsurePopulated(DataContext? context)
 	{
-		if ( !context.DailyRoutePlans.Any() )
+		if ( !context.DailyRoutes.Any() )
 		{
 			var runs = new List<Run>
 				{
@@ -60,7 +60,7 @@ public class SeedData
 			shops.ForEach( s => context?.Shops.Add( s ) );
 			context?.SaveChanges();
 
-			var dailyRoutePlans = new List<DailyRoutePlan>
+			var dailyRoutePlans = new List<DailyRoute>
 				{
 				new() { RunId = 68, ShopId = 2, DayOfWeek = DayOfWeek.Monday },
 				new() { RunId = 68, ShopId = 4, DayOfWeek = DayOfWeek.Monday },
@@ -68,7 +68,7 @@ public class SeedData
 				new() { RunId = 68, ShopId = 3, DayOfWeek = DayOfWeek.Tuesday },
 				};
 
-			dailyRoutePlans.ForEach( d => context?.DailyRoutePlans.Add( d ) );
+			dailyRoutePlans.ForEach( d => context?.DailyRoutes.Add( d ) );
 			context?.SaveChanges();
 		}
 	}

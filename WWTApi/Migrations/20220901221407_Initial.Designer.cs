@@ -23,7 +23,7 @@ namespace WWTApi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("DataModels.WorkModels.DailyRoutePlan", b =>
+            modelBuilder.Entity("DataModels.WorkModels.DailyRoute", b =>
                 {
                     b.Property<int>("RunId")
                         .HasColumnType("int");
@@ -99,7 +99,7 @@ namespace WWTApi.Migrations
                     b.ToTable("Shops");
                 });
 
-            modelBuilder.Entity("DataModels.WorkModels.DailyRoutePlan", b =>
+            modelBuilder.Entity("DataModels.WorkModels.DailyRoute", b =>
                 {
                     b.HasOne("DataModels.WorkModels.Run", "Run")
                         .WithMany("DailyRoutePlans")

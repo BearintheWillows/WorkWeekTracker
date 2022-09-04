@@ -2,7 +2,7 @@ namespace DataModels.WorkModels;
 
 using System.Collections;
 
-public class DailyRoutePlan
+public class DailyRoute
 {
 	public int       RunId     { get; set; }
     public int       ShopId    { get; set; }

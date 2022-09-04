@@ -13,5 +13,5 @@ public class Shop
 	public string  PostCode    { get; set; } = string.Empty;
 	public string? Notes       { get; set; }
 	
-	public virtual ICollection<DailyRoutePlan> DailyRoutePlans { get; set; }
+	public virtual ICollection<DailyRoute> DailyRoutePlans { get; set; }
 }

@@ -54,15 +54,15 @@ public class RunController : ControllerBase
 	[HttpGet( "{id}/shops/{day?}" )]
 	public List<ShopDto> GetShopsByRunId(long id, DayOfWeek? day)
 	{
-		IQueryable<DailyRoutePlan> plans;
+		IQueryable<DailyRoute> plans;
 
 		if ( day != null )
 		{
-			plans = _dataContext.DailyRoutePlans
+			plans = _dataContext.DailyRoutes
 			                    .Where( x => x.RunId == id && x.DayOfWeek.Equals( day ) );
 		} else
 		{
-			plans = _dataContext.DailyRoutePlans
+			plans = _dataContext.DailyRoutes
 			                    .Where( x => x.RunId == id );
 		}
 
@@ -77,7 +77,7 @@ public class RunController : ControllerBase
 			{
 			Id = run.Id,
 			LocationArea = run.LocationArea,
-			DailyRoutePlans = new List<DailyRoutePlan>()
+			DailyRoutePlans = new List<DailyRoute>()
 			};
 
 		_dataContext?.AddAsync( newRun );

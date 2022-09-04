@@ -13,13 +13,13 @@ public class DataContext : DbContext
 
 	public DbSet<Shop> Shops { get; set; }
 
-	public DbSet<DailyRoutePlan> DailyRoutePlans { get; set; }
+	public DbSet<DailyRoute> DailyRoutes { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		modelBuilder.Entity<DailyRoutePlan>()
+		modelBuilder.Entity<DailyRoute>()
 		            .HasKey( x => new { x.RunId, x.ShopId, x.DayOfWeek } );
-		modelBuilder.Entity<DailyRoutePlan>()
+		modelBuilder.Entity<DailyRoute>()
 		            .HasIndex( x => new { x.ShopId, x.DayOfWeek, } )
 		            .IsUnique();
 	}
