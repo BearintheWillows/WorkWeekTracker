@@ -2,6 +2,7 @@ namespace WWTApi.Controllers;
 
 using Data;
 using DataModels.WorkModels;
+using DataModels.WorkModels.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,5 +21,39 @@ public class DailyRouteController : ControllerBase
 	public async Task<List<DailyRoute>> GetAll()
 	{
 		return await _dataContext?.DailyRoutes.ToListAsync();
+	}
+	
+	[HttpGet( "{id}/{day?}" )]
+	public Task<DailyRouteDto> GetShopsByRunId(long id, DayOfWeek? day)
+	{
+		IQueryable<DailyRoute> plans;
+
+		if ( day != null )
+		{
+			plans = _dataContext.DailyRoutes
+			                    .Where( x => x.RunId == id && x.DayOfWeek.Equals( day ) );
+		} else
+		{
+			plans = _dataContext.DailyRoutes
+			                    .Where( x => x.RunId == id );
+		}
+
+		return plans.Select( x => new DailyRouteDto
+				{
+				RunId = x.RunId,
+				Shops = plans.Include( x => x.Shop )
+				             .Select( s => new ShopDto
+						              {
+						              ID = s.Shop.Id, Name = s.Shop.CompanyName,
+						              }
+				              ).ToList()
+				}
+		).FirstOrDefaultAsync();
+	}
+
+	[HttpPost]
+	public void AddRoute()
+	{
+		
 	}
 }
