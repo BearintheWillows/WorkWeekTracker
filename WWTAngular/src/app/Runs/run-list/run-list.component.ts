@@ -13,7 +13,7 @@ export class RunListComponent implements OnInit {
   runs?: any;
   selectedRun?: Run
 
-  constructor(private runService: RunsService) {
+  constructor(private runService: RunsService, private messageService: MessageService) {
   }
 
   ngOnInit(): void {
@@ -22,6 +22,7 @@ export class RunListComponent implements OnInit {
 
   onSelect(run: Run): void {
     this.selectedRun = run;
+    this.messageService.add(`RunList: Selected Run id=${run.id}`)
 
   }
 
