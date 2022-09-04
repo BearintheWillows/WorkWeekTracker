@@ -10,12 +10,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSliderModule} from "@angular/material/slider";
 import {MatListModule} from "@angular/material/list";
 import {RunDetailComponent} from "./Runs/run-detail/run-detail.component";
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RunListComponent,
     RunDetailComponent,
+    MessagesComponent,
 
 
   ],

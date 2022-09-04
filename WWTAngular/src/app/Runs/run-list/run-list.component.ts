@@ -1,6 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Run} from '../../_models/run';
 import {RunsService} from "../../_services/runs.service";
+import {MessageService} from "../../_services/message.service";
 
 @Component({
   selector   : 'app-run-list',
