@@ -1,15 +1,17 @@
 <h2>Run List</h2>
 
+<div class="card-container">
+<mat-card class="runs" *ngFor="let run of runs">
+  <mat-card-header>
+    <mat-card-title>
+      <span>{{run.id}}</span>
+    </mat-card-title>
 
-<mat-list class="runs" *ngFor="let run of runs">
-  <mat-list-item>
-    <button [class.mat-selected]="run === selectedRun" type="button" (click)="onSelect(run)">
-      <span class="badge">{{run.id}}</span>
+    <mat-card-subtitle>
       <span class="name">{{run.locationArea}}</span>
-    </button>
-  </mat-list-item>
-</mat-list>
-
-<button (click)="loadData()">click me</button>
-
-<app-run-detail [run]="selectedRun"></app-run-detail>
+    </mat-card-subtitle>
+  </mat-card-header>
+</mat-card>
+</div>
+<button class="tw-blue-btn">Click Me!</button>
+<!--<app-run-detail [run]="selectedRun"></app-run-detail>-->

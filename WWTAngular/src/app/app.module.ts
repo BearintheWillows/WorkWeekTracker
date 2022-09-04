@@ -17,6 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from './footer/footer.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatTabsModule} from "@angular/material/tabs";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -30,18 +31,19 @@ import {MatTabsModule} from "@angular/material/tabs";
 
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatSliderModule,
-    MatListModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatTabsModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatSliderModule,
+        MatListModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatTabsModule,
+        MatCardModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

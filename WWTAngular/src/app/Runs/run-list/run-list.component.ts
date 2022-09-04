@@ -20,11 +20,6 @@ export class RunListComponent implements OnInit {
     this.loadData()
   }
 
-  onSelect(run: Run): void {
-    this.selectedRun = run;
-    this.messageService.add(`RunList: Selected Run id=${run.id}`)
-
-  }
 
   loadData() {
     this.runService.getRuns().subscribe(res => {
