@@ -11,6 +11,8 @@ import {MatSliderModule} from "@angular/material/slider";
 import {MatListModule} from "@angular/material/list";
 import {RunDetailComponent} from "./Runs/run-detail/run-detail.component";
 import { MessagesComponent } from './messages/messages.component';
+import { NavComponent } from './nav/nav.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { MessagesComponent } from './messages/messages.component';
     RunListComponent,
     RunDetailComponent,
     MessagesComponent,
+    NavComponent,
 
 
   ],
@@ -29,6 +32,7 @@ import { MessagesComponent } from './messages/messages.component';
     BrowserAnimationsModule,
     MatSliderModule,
     MatListModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
