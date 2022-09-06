@@ -27,4 +27,16 @@ export class RunListComponent implements OnInit {
       console.log(res)
     });
   }
+
+  onSelect(run: Run): void{
+    this.selectedRun = run;
+
+  }
+
+  onRemoveSelect(): void{
+    this.selectedRun = undefined;
+
+  }
+
+
 }

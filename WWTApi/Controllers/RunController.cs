@@ -17,8 +17,7 @@ public class RunController : ControllerBase
 		_dataContext = dataContext;
 	}
 
-	//GET
-	//
+	
 	/// <summary>
 	/// Returns all available Run Entities 
 	/// </summary>
@@ -28,11 +27,9 @@ public class RunController : ControllerBase
 	{
 		return await _dataContext?.Runs.ToListAsync();
 	}
-
-	//GET BY ID
-	//
+	
 	/// <summary>
-	/// Get Run on it's own by id param.
+	/// Get Runn by id param.
 	/// </summary>
 	/// <param name="id"></param>
 	/// <returns>Returns JSON of a Run entity</returns>
@@ -41,46 +38,54 @@ public class RunController : ControllerBase
 	{
 		return await _dataContext.Runs.SingleOrDefaultAsync( r => r.Id == id );
 	}
-
-	//GET SHOPS OF RUN BY ID
-	//
+	
 	/// <summary>
-	/// Retrieve shops for a specific run by id
+	/// Retrieve A Route via Run Id and optional Day
 	/// Optional DayOfWeek parameter available if filtering by specific day
 	/// </summary>
 	/// <param name="id"></param>
 	/// <param name="day"></param>
 	/// <returns>Returns JSON of ShopDto</returns>
-	[HttpGet( "{id}/shops/{day?}" )]
-	public List<ShopDto> GetShopsByRunId(long id, DayOfWeek? day)
+	[HttpGet( "{id}/route/{day?}" )]
+	public async Task<DailyRouteDto?> GetRoutePlanById(long id, DayOfWeek? day)
 	{
-		IQueryable<DailyRoute> plans;
+		{
+			IQueryable<DailyRoute> plans;
 
-		if ( day != null )
-		{
-			plans = _dataContext.DailyRoutes
-			                    .Where( x => x.RunId == id && x.DayOfWeek.Equals( day ) );
-		} else
-		{
-			plans = _dataContext.DailyRoutes
-			                    .Where( x => x.RunId == id );
+			if ( day != null )
+			{
+				plans =  _dataContext.DailyRoutes
+				                    .Where( x => x.RunId == id && x.DayOfWeek.Equals( day ) );
+			} else
+			{
+				plans = _dataContext.DailyRoutes
+				                    .Where( x => x.RunId == id );
+			}
+
+			return await plans.Select( x => new DailyRouteDto
+					{
+					RunId = x.RunId,
+					Shops = plans.Include( x => x.Shop )
+					             .Select( s => new ShopDto { ID = s.Shop.Id, Name = s.Shop.CompanyName, } ).ToList()
+					}
+			).FirstOrDefaultAsync();
 		}
-
-		return plans.Include( x => x.Shop )
-		            .Select( x => new ShopDto { ID = x.Shop.Id, Name = x.Shop.CompanyName, } ).ToList();
 	}
 
 	[HttpPost]
-	public void AddRun(RunDto run)
-	{
-		var newRun = new Run
-			{
-			Id = run.Id,
-			LocationArea = run.LocationArea,
-			DailyRoutePlans = new List<DailyRoute>()
-			};
+	public async Task Update([FromBody] Run run)
+	{ 
+		await _dataContext.Runs.AddAsync( run );
+		
+		for ( int i = 0; i < 7; i++ )
+		{
+			var dayIndex = i;
+			_dataContext.DailyRoutes.Add( new DailyRoute { RunId = run.Id, DayOfWeek = ( DayOfWeek ) dayIndex } );
 
-		_dataContext?.AddAsync( newRun );
+			++i;
+		}
+
+		await _dataContext.SaveChangesAsync();
 	}
-	
+
 }

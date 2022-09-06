@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import { Run } from '../../_models/run';
 
 @Component({
@@ -9,10 +9,13 @@ import { Run } from '../../_models/run';
 export class RunDetailComponent implements OnInit {
 
   @Input() run?: Run;
-
   constructor() { }
 
   ngOnInit(): void {
   }
+
+
+
+
 
 }
