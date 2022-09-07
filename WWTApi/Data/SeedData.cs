@@ -62,10 +62,10 @@ public class SeedData
 
 			var dailyRoutePlans = new List<DailyRoute>
 				{
-				new() { RunId = 68, ShopId = 2, DayOfWeek = DayOfWeek.Monday },
-				new() { RunId = 68, ShopId = 4, DayOfWeek = DayOfWeek.Monday },
-				new() { RunId = 14, ShopId = 3, DayOfWeek = DayOfWeek.Monday },
-				new() { RunId = 68, ShopId = 3, DayOfWeek = DayOfWeek.Tuesday },
+				new() { RunId = 68, ShopId = 2, StopId = 1, DayOfWeek = DayOfWeek.Monday },
+				new() { RunId = 68, ShopId = 4, StopId = 2, DayOfWeek = DayOfWeek.Monday },
+				new() { RunId = 14, ShopId = 3, StopId = 1, DayOfWeek = DayOfWeek.Monday },
+				new() { RunId = 68, ShopId = 3, StopId = 2, DayOfWeek = DayOfWeek.Tuesday },
 				};
 
 			dailyRoutePlans.ForEach( d => context?.DailyRoutes.Add( d ) );

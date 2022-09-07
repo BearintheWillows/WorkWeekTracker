@@ -4,17 +4,15 @@ using System.Text.Json.Serialization;
 
 public class ShopDto
 {
-	public int     ID   { get; set; }
+	public int     Id   { get; set; }
 	
-	public string  Name     { get; set; } = String.Empty;
-	public string  Address1 { get; set; } = String.Empty;
-	public string? Address2 { get; set; } = String.Empty;
+	public string  Name     { get; set; } = string.Empty;
+	public string  Address1 { get; set; } = string.Empty;
+	public string? Address2 { get; set; } = string.Empty;
 	public string? Address3 { get; set; } = string.Empty;
-	public string? City     { get; set; } = String.Empty;
-	public string? County   { get; set; } = String.Empty;
+	public string? City     { get; set; } = string.Empty;
+	public string? County   { get; set; } = string.Empty;
 	public string  PostCode { get; set; } = string.Empty;
-	public string? Notes    { get; set; } = String.Empty;
+	public string? Notes    { get; set; } = string.Empty;
 	
-	//Navigation Properties
-	public virtual ICollection<Run>         Runs         { get; set; } = new List<Run>();
 }

@@ -38,7 +38,7 @@ public class RunController : ControllerBase
 	{
 		return await _dataContext.Runs.SingleOrDefaultAsync( r => r.Id == id );
 	}
-	
+
 	/// <summary>
 	/// Retrieve A Route via Run Id and optional Day
 	/// Optional DayOfWeek parameter available if filtering by specific day
@@ -49,27 +49,29 @@ public class RunController : ControllerBase
 	[HttpGet( "{id}/route/{day?}" )]
 	public async Task<DailyRouteDto?> GetRoutePlanById(long id, DayOfWeek? day)
 	{
+		IQueryable<DailyRoute> plans;
+
+		if ( day != null )
 		{
-			IQueryable<DailyRoute> plans;
-
-			if ( day != null )
-			{
-				plans =  _dataContext.DailyRoutes
-				                    .Where( x => x.RunId == id && x.DayOfWeek.Equals( day ) );
-			} else
-			{
-				plans = _dataContext.DailyRoutes
-				                    .Where( x => x.RunId == id );
-			}
-
-			return await plans.Select( x => new DailyRouteDto
-					{
-					RunId = x.RunId,
-					Shops = plans.Include( x => x.Shop )
-					             .Select( s => new ShopDto { ID = s.Shop.Id, Name = s.Shop.CompanyName, } ).ToList()
-					}
-			).FirstOrDefaultAsync();
+			plans = _dataContext.DailyRoutes
+			                    .Where( x => x.RunId == id && x.DayOfWeek.Equals( day ) );
+		} else
+		{
+			plans = _dataContext.DailyRoutes
+			                    .Where( x => x.RunId == id );
 		}
+		
+
+		
+		return await plans.Select( x => new DailyRouteDto
+				                   {
+				                   RunId = x.RunId,
+				                   DeliveryDay = x.DayOfWeek.ToString(),
+				                   Location = x.Run.LocationArea,
+				                   Shops = DailyRoute.SetRouteShops( plans )
+				                   }
+		                   )
+		                  .FirstOrDefaultAsync();
 	}
 
 	[HttpPost]
