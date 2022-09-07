@@ -1,8 +1,9 @@
 namespace WWTApi.Controllers;
 
 using Data;
-using DataModels.WorkModels;
-using DataModels.WorkModels.DTOs;
+using Data.WorkModels;
+using Data.WorkModels.DTOs;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -68,26 +69,24 @@ public class RunController : ControllerBase
 				                   RunId = x.RunId,
 				                   DeliveryDay = x.DayOfWeek.ToString(),
 				                   Location = x.Run.LocationArea,
-				                   Shops = DailyRoute.SetRouteShops( plans )
+				                   Shops = DailyRoute.SetRouteShops( plans ),
 				                   }
 		                   )
 		                  .FirstOrDefaultAsync();
 	}
 
-	[HttpPost]
-	public async Task Update([FromBody] Run run)
-	{ 
-		await _dataContext.Runs.AddAsync( run );
-		
-		for ( int i = 0; i < 7; i++ )
+	[HttpDelete("{id}")]
+	public async Task<IActionResult> DeleteRun(int id)
+	{
+		if ( await Run.Delete( id, _dataContext ) )
 		{
-			var dayIndex = i;
-			_dataContext.DailyRoutes.Add( new DailyRoute { RunId = run.Id, DayOfWeek = ( DayOfWeek ) dayIndex } );
-
-			++i;
+			return NoContent();
 		}
 
-		await _dataContext.SaveChangesAsync();
+		return NotFound();
+
+
+
 	}
 
 }

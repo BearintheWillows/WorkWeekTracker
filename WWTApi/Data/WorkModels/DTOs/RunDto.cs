@@ -1,4 +1,4 @@
-namespace DataModels.WorkModels.DTOs;
+namespace WWTApi.Data.WorkModels.DTOs;
 
 public class RunDto
 {

@@ -32,9 +32,15 @@ namespace WWTApi.Migrations
                     b.Property<int>("DayOfWeek")
                         .HasColumnType("int");
 
+                    b.Property<int>("StopId")
+                        .HasColumnType("int");
+
                     b.HasKey("RunId", "ShopId", "DayOfWeek");
 
                     b.HasIndex("ShopId", "DayOfWeek")
+                        .IsUnique();
+
+                    b.HasIndex("StopId", "DayOfWeek", "RunId")
                         .IsUnique();
 
                     b.ToTable("DailyRoutes");

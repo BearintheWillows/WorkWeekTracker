@@ -1,6 +1,4 @@
-namespace DataModels.WorkModels.DTOs;
-
-using System.Text.Json.Serialization;
+namespace WWTApi.Data.WorkModels.DTOs;
 
 public class ShopDto
 {

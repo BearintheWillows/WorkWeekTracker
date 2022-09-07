@@ -1,7 +1,7 @@
 namespace WWTApi.Data;
 
-using DataModels.WorkModels;
 using Microsoft.EntityFrameworkCore;
+using WorkModels;
 
 public class SeedData
 {

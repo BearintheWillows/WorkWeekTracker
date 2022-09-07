@@ -1,4 +1,4 @@
-namespace DataModels.WorkModels;
+namespace WWTApi.Data.WorkModels;
 
 public class Shop
 {

@@ -2,8 +2,8 @@
 <div class="card-container" *ngIf="!selectedRun">
   <h2>Run List</h2>
 
-  <mat-card (click)="selectedRun" class="runs" *ngFor="let run of runs">
-  <a [routerLink]="['/run/', run.id, 'detail']" (click)="onSelect(run)" >
+  <mat-card class="runs" *ngFor="let run of runs">
+  <a [routerLink]="['/run/', run.id, 'details']" (click)="onSelect(run)" >
   <mat-card-header >
 
     <mat-card-title>

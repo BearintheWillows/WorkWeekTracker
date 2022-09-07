@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'runs', component: RunListComponent},
   { path: 'run/:id/details', component: RunDetailComponent}
 
+
 ];
 
 @NgModule({

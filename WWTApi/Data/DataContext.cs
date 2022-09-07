@@ -1,7 +1,7 @@
 namespace WWTApi.Data;
 
-using DataModels.WorkModels;
 using Microsoft.EntityFrameworkCore;
+using WorkModels;
 
 public class DataContext : DbContext
 {
@@ -21,6 +21,9 @@ public class DataContext : DbContext
 		            .HasKey( x => new { x.RunId, x.ShopId, x.DayOfWeek } );
 		modelBuilder.Entity<DailyRoute>()
 		            .HasIndex( x => new { x.ShopId, x.DayOfWeek, } )
+		            .IsUnique();
+		modelBuilder.Entity<DailyRoute>()
+		            .HasIndex( x => new { x.StopId, x.DayOfWeek, x.RunId } )
 		            .IsUnique();
 	}
 }

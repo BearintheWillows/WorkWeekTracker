@@ -7,6 +7,10 @@
     <input id="runId" [(ngModel)]="run.id" placeholder="Id">
     <label for="runLoc">Location</label>
     <input id="runLoc" [(ngModel)]="run.locationArea" placeholder="Location">
+   <div *ngFor="let day in dailyRoute">
+     <p></p>
+   </div>
+
   </div>
 
 </div>
