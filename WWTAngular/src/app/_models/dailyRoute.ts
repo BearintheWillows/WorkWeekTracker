@@ -1,9 +1,10 @@
 import {WeekDay} from "@angular/common";
+import {Shop} from "./shop";
 
 export interface DailyRoute{
 
   runId: number;
-  shops: any[];
+  shops: Shop[];
   day: WeekDay;
 
 
