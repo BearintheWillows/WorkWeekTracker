@@ -18,16 +18,24 @@ public class DailyRoute
 	public Run  Run  { get; set; }
 
 
-	public static List<Tuple<int, DayOfWeek, ShopDto>> SetRouteShops(IQueryable<DailyRoute> routePlan)
+	/// <summary>
+	/// Creates a list of Dynamic objects
+	/// For each item in the param -
+	/// 1 - Create new Shop Dto
+	/// 2 - Create new dynamic object using Run Id, Day of Week, StopId and (1) ShopDto
+	/// Returns list of dynamic objects to represent the route.
+	/// </summary>
+	/// <param name="routePlan"></param>
+	/// <returns>Returns a list of dynamic objects with a runId, day, stop id and shop</returns>
+	public static List<dynamic> SetRouteShops(IQueryable<DailyRoute> routePlan)
 	{
-		var shopList = new List<Tuple<int, DayOfWeek, ShopDto>>();
+		var shopList = new List<dynamic>();
 		foreach ( var item in routePlan.Include( x => x.Shop ) )
 		{
-			var newShopDto = new ShopDto {Id = item.Shop.Id, Name = item.Shop.CompanyName };
-			var newTuple = Tuple.Create( item.StopId, item.DayOfWeek, newShopDto );
-			shopList.Add( newTuple );
+			var newShopDto = new ShopDto { Id = item.Shop.Id, Name = item.Shop.CompanyName };
+			dynamic route = new { runId = item.RunId, day = item.DayOfWeek, stopId = item.StopId, shop = newShopDto };
+		shopList.Add(route);
 		}
-
 		return shopList;
 	}
 }
