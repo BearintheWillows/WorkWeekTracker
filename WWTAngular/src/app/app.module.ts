@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './routing-modules/app-routing.module';
 import { AppComponent } from './app.component';
 import {RunListComponent} from "./Runs/run-list/run-list.component";
 import {FormsModule} from "@angular/forms";
@@ -18,31 +18,26 @@ import { FooterComponent } from './footer/footer.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatCardModule} from "@angular/material/card";
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {RunsModule} from "./Runs/runs.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    RunListComponent,
-    RunDetailComponent,
-    MessagesComponent,
     NavComponent,
     DashboardComponent,
     FooterComponent,
+    PageNotFoundComponent,
 
 
   ],
     imports: [
         BrowserModule,
-        AppRoutingModule,
         HttpClientModule,
-        FormsModule,
         BrowserAnimationsModule,
-        MatSliderModule,
-        MatListModule,
         MatToolbarModule,
-        MatButtonModule,
-        MatTabsModule,
-        MatCardModule,
+        RunsModule,
+        AppRoutingModule,
     ],
   providers: [],
   bootstrap: [AppComponent]
