@@ -13,7 +13,6 @@ import {DailyRoute} from "../_models/dailyRoute";
 export class RunsService {
 
   baseUrl = environment.apiUrl;
-  private runs: any[] = [];
 
   constructor(private  http: HttpClient, private messageService: MessageService) { }
 

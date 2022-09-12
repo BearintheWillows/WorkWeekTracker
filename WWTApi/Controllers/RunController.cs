@@ -61,18 +61,18 @@ public class RunController : ControllerBase
 			plans = _dataContext.DailyRoutes
 			                    .Where( x => x.RunId == id );
 		}
-		
 
-		
-		return await plans.Select( x => new DailyRouteDto
-				                   {
-				                   RunId = x.RunId,
-				                   DeliveryDay = x.DayOfWeek.ToString(),
-				                   Location = x.Run.LocationArea,
-				                   Shops = DailyRoute.SetRouteShops( plans ),
-				                   }
-		                   )
-		                  .FirstOrDefaultAsync();
+		Task<DailyRouteDto?> route = plans.Include( r => r.Run ).Select( x => new DailyRouteDto
+				{
+				RunId = x.Run.Id,
+				Location = x.Run.LocationArea,
+				Shops = DailyRoute.SetRouteDto(
+					plans
+				)
+				}
+		).FirstOrDefaultAsync(  );
+
+			return await route;
 	}
 
 	[HttpDelete("{id}")]

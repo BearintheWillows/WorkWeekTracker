@@ -1,11 +1,13 @@
 export interface Shop {
 
-  StopId: number,
-  Id: number,
-  Name: string,
-  Address1: string,
-  City: string,
-  County: string
-  PostCode: string
+  id: number,
+  name: string,
+  address1: string,
+  address2: string,
+  address3: string,
+  city: string,
+  county: string
+  postCode: string,
+  notes: string
 
 }

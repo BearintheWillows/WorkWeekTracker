@@ -7,5 +7,5 @@ public class DailyRouteDto
 	public string? Location { get; set; }
 
 	public string? DeliveryDay { get; set; }
-	public List<dynamic> Shops { get; set; }
+	public List<dynamic>? Shops { get; set; }
 }

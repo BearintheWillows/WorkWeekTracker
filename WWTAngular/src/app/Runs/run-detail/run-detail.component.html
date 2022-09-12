@@ -1,14 +1,17 @@
 
-<div class="detailBox" *ngIf="run" >
-  <h2>Run Number: {{run.id}} Details</h2>
+<div class="detailBox" *ngIf="dailyRoute != undefined" >
+  <button (click)="getDetail()">Load</button>
+  <h2>Run Number:  Details</h2>
 
   <div>
     <label for="runId">Id: </label>
-    <input id="runId" [(ngModel)]="run.id" placeholder="Id">
-    <label for="runLoc">Location</label>
-    <input id="runLoc" [(ngModel)]="run.locationArea" placeholder="Location">
-   <div *ngFor="let day in dailyRoute">
-     <p></p>
+    <input id="runId" [(ngModel)]="dailyRoute.runId" placeholder="{{dailyRoute.runId}}">
+    <label for="runDay">Location</label>
+    <input id="runDay" [(ngModel)]="dailyRoute.deliveryDay" placeholder="{{dailyRoute.deliveryDay}}">
+   <div *ngIf="route != undefined">
+     <ul *ngFor="let item of route">
+       <h1>Stop Id: {{item.stopId}}</h1>
+     </ul>
    </div>
 
   </div>

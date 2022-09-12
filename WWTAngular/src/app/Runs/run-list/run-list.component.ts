@@ -27,9 +27,9 @@ export class RunListComponent implements OnInit {
       console.log(res)
     });
   }
-
   onSelect(run: Run): void{
     this.selectedRun = run;
+    console.log(`selectedRun: ${run.id}`)
 
   }
 

@@ -27,11 +27,9 @@ public class DailyRoute
 	/// </summary>
 	/// <param name="routePlan"></param>
 	/// <returns>Returns a list of dynamic objects with a runId, day, stop id and shop</returns>
-	public static async Task<DailyRouteDto?> SetRouteDto(IQueryable<DailyRoute> routePlan)
+	public static List<dynamic> SetRouteDto(IQueryable<DailyRoute> routePlan)
 	{
-		var dailyRoute = await routePlan.FirstOrDefaultAsync().ConfigureAwait( false );
-			var run = dailyRoute?.Run;
-			List<dynamic> shopList = new List<dynamic>();
+		List<dynamic> shopList = new List<dynamic>();
 
 			foreach ( var item in routePlan.Include( x => x.Shop ) )
 			{
@@ -47,15 +45,7 @@ public class DailyRoute
 				shopList.Add( route );
 			}
 
-			var newRoute = new DailyRouteDto
-				{
-				RunId = run?.Id,
-				Location = run?.LocationArea,
-				DeliveryDay = dailyRoute.DayOfWeek.ToString(),
-				Shops = shopList
-				};
-
-			return newRoute;
+			return shopList;
 		}
 }
 
