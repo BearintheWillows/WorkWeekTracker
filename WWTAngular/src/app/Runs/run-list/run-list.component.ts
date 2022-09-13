@@ -1,8 +1,6 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {Run} from '../../_models/run';
+import {Component, OnInit} from '@angular/core';
 import {RunsService} from "../../_services/runs.service";
-import {MessageService} from "../../_services/message.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {baseRun} from "../../_models/baseRun";
 
 @Component({
   selector   : 'app-run-list',
@@ -11,8 +9,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class RunListComponent implements OnInit {
 
-  runs: Run[] = [];
-  selectedRun?: Run;
+  runs: baseRun[] = [];
+  selectedRun?: baseRun;
   runId: string = '';
 
   constructor(
@@ -21,7 +19,6 @@ export class RunListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.runs = this.route
     this.loadData()
   }
 
@@ -32,7 +29,7 @@ export class RunListComponent implements OnInit {
       this.runs = res;
     });
   }
-  onSelect(run: Run): void{
+  onSelect(run: baseRun): void{
     this.selectedRun = run;
 
   }

@@ -28,7 +28,7 @@ import {RunsModule} from "./Runs/runs.module";
     DashboardComponent,
     FooterComponent,
     PageNotFoundComponent,
-
+    MessagesComponent
 
   ],
     imports: [
@@ -38,6 +38,7 @@ import {RunsModule} from "./Runs/runs.module";
         MatToolbarModule,
         RunsModule,
         AppRoutingModule,
+
     ],
   providers: [],
   bootstrap: [AppComponent]

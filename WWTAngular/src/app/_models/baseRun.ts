@@ -1,5 +1,5 @@
 
-export interface Run {
+export interface baseRun {
 
   id: number;
   locationArea: string;

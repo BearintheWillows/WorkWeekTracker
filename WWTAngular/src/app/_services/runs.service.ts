@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {catchError, Observable, map, tap} from "rxjs";
-import {Run} from "../_models/run";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 import {MessageService} from "./message.service";
-import {X} from "@angular/cdk/keycodes";
 import {DetailedRun} from "../_models/detailedRun";
+import {baseRun} from "../_models/baseRun";
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +15,13 @@ export class RunsService {
 
   constructor(private  http: HttpClient, private messageService: MessageService) { }
 
-  getRuns(): Observable<Run[]>{
+  //Retrieve all "simple" runs
+  getRuns(): Observable<baseRun[]>{
       this.messageService.add('RunService: Fetched simple Runs')
-     return this.http.get<Run[]>(this.baseUrl + 'run');
+     return this.http.get<baseRun[]>(this.baseUrl + 'run');
   }
 
+  //Retrieve runs via id and/or day of week. Returns "Detailed" run
   getRunShopsById(id: string, day?: string): Observable<DetailedRun>{
     if(day != null){
       this.messageService.add(('RunServce: Fetched detailed run by id only'))

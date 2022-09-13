@@ -1,10 +1,7 @@
-import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
-import { Run } from '../../_models/run';
+import {Component, OnInit} from '@angular/core';
 import {RunsService} from "../../_services/runs.service";
 import {DetailedRun} from "../../_models/detailedRun";
-import {Shop} from "../../_models/shop";
-import {Observable, of, switchMap} from "rxjs";
-import {RunShop} from "../../_models/RunShop";
+import {Observable, switchMap} from "rxjs";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 
 @Component({
@@ -14,7 +11,7 @@ import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 })
 export class RunDetailComponent implements OnInit {
 
-  detailedRun: DetailedRun | undefined ;
+  detailedRun: Observable<DetailedRun> | undefined ;
 
 
   constructor(
@@ -36,7 +33,7 @@ export class RunDetailComponent implements OnInit {
 
   goToRunList(detailedRun: DetailedRun) {
 
-    const runId = detailedRun ? detailedRun.runId : null ;
+    const runId = detailedRun ? detailedRun.id : null ;
     this.router.navigate(['/runs', { id: runId, foo: 'foo'}]);
 
   }

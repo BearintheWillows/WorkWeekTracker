@@ -8,22 +8,9 @@ import {MessageService} from "../_services/message.service";
 })
 export class MessagesComponent implements OnInit {
 
-  //Initialises new array of message strings
-  messages: string[] = [];
-
-  //Injects MessageService
   constructor(public messageService: MessageService) { }
 
-  // Adds a message to the messages array
-  add(message: string) {
-    this.messages.push(message);
-
-  }
-
-  ///Removes all messages from messages array
-  clear() {
-    this.messages = [];
-
+  ngOnInit(): void {
   }
 
 }

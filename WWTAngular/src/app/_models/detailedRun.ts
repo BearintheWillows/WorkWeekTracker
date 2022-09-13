@@ -1,9 +1,8 @@
 import {RunShop} from "./RunShop";
+import {baseRun} from "./baseRun";
 
-export interface DetailedRun {
+export interface DetailedRun extends baseRun {
 
-  runId: number,
-  location: string,
   deliveryDay: string,
   shops: RunShop[],
 
