@@ -3,7 +3,6 @@ namespace WWTApi.Controllers;
 using Data;
 using Data.WorkModels;
 using Data.WorkModels.DTOs;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +17,7 @@ public class RunController : ControllerBase
 		_dataContext = dataContext;
 	}
 
-	
+
 	/// <summary>
 	/// Returns all available Run Entities 
 	/// </summary>
@@ -28,7 +27,7 @@ public class RunController : ControllerBase
 	{
 		return await _dataContext?.Runs.ToListAsync();
 	}
-	
+
 	/// <summary>
 	/// Get Runn by id param.
 	/// </summary>
@@ -66,16 +65,14 @@ public class RunController : ControllerBase
 				{
 				RunId = x.Run.Id,
 				Location = x.Run.LocationArea,
-				Shops = DailyRoute.SetRouteDto(
-					plans
-				)
+				Shops = DailyRoute.SetRouteDto( plans )
 				}
-		).FirstOrDefaultAsync(  );
+		).FirstOrDefaultAsync();
 
-			return await route;
+		return await route;
 	}
 
-	[HttpDelete("{id}")]
+	[HttpDelete( "{id}" )]
 	public async Task<IActionResult> DeleteRun(int id)
 	{
 		if ( await Run.Delete( id, _dataContext ) )
@@ -84,9 +81,16 @@ public class RunController : ControllerBase
 		}
 
 		return NotFound();
-
-
-
 	}
 
+	[HttpPut( "{id}" )]
+	public async Task<IActionResult> EditRun(int id, Run run)
+	{
+		if ( await Run.Edit( id, run, _dataContext ) )
+		{
+			return NoContent();
+		}
+
+		return NotFound();
+	}
 }
