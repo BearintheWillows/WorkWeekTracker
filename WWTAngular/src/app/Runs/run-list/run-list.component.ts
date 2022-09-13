@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {RunsService} from "../../_services/runs.service";
 import {baseRun} from "../../_models/baseRun";
+import {MessageService} from "../../_services/message.service";
 
 @Component({
   selector   : 'app-run-list',
@@ -15,6 +16,7 @@ export class RunListComponent implements OnInit {
 
   constructor(
     private runService: RunsService,
+    private messageService: MessageService
     ) {
   }
 
@@ -31,6 +33,7 @@ export class RunListComponent implements OnInit {
   }
   onSelect(run: baseRun): void{
     this.selectedRun = run;
+    this.messageService.add(`RunListComponent: Selected Run id=${run.id}`)
 
   }
 

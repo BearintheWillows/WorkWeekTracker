@@ -13,7 +13,10 @@ export class RunsService {
 
   baseUrl = environment.apiUrl;
 
-  constructor(private  http: HttpClient, private messageService: MessageService) { }
+  constructor(
+    private  http: HttpClient,
+    private messageService: MessageService
+  ) { }
 
   //Retrieve all "simple" runs
   getRuns(): Observable<baseRun[]>{
