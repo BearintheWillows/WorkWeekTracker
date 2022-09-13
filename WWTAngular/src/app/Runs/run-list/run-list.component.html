@@ -3,7 +3,7 @@
   <h2>Run List</h2>
 
   <mat-card class="runs" *ngFor="let run of runs">
-  <a [routerLink]="['/run/', run.id, 'details']" (click)="onSelect(run)" >
+<a [routerLink]="['/run/', run.id, 'details']" routerLinkActive="active" (click)="onSelect(run)" >
   <mat-card-header >
 
     <mat-card-title>
@@ -16,9 +16,4 @@
   </mat-card-header>
   </a>
 </mat-card>
-</div>
-<div class="detailContainer">
-<app-run-detail [run]="selectedRun"></app-run-detail>
-
-<button class="tw-blue-btn" *ngIf="selectedRun" (click)="onRemoveSelect()">Back</button>
 </div>

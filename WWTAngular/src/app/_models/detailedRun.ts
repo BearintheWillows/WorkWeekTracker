@@ -1,8 +1,6 @@
-import {WeekDay} from "@angular/common";
-import {Shop} from "./shop";
 import {RunShop} from "./RunShop";
 
-export interface DailyRoute{
+export interface DetailedRun {
 
   runId: number,
   location: string,

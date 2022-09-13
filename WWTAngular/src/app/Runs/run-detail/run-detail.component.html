@@ -1,20 +1,22 @@
 
-<div class="detailBox" *ngIf="dailyRoute != undefined" >
-  <button (click)="getDetail()">Load</button>
+<div class="detailBox" *ngIf="detailedRun != undefined" >
   <h2>Run Number:  Details</h2>
 
-  <div>
-    <label for="runId">Id: </label>
-    <input id="runId" [(ngModel)]="dailyRoute.runId" placeholder="{{dailyRoute.runId}}">
-    <label for="runDay">Location</label>
-    <input id="runDay" [(ngModel)]="dailyRoute.deliveryDay" placeholder="{{dailyRoute.deliveryDay}}">
-   <div *ngIf="route != undefined">
-     <ul *ngFor="let item of route">
-       <h1>Stop Id: {{item.stopId}}</h1>
-     </ul>
-   </div>
+<!--  <div>-->
+<!--    <label for="runId">Id: </label>-->
+<!--    <input id="runId" [(ngModel)]="detailedRun.runId" placeholder="{{detailedRun.}}">-->
+<!--    <label for="runDay">Location</label>-->
+<!--    <input id="runDay" [(ngModel)]="detailedRun.deliveryDay" placeholder="{{detailedRun.deliveryDay}}">-->
+<!--   <div *ngIf="runShops != undefined">-->
+<!--     <ul *ngFor="let item of runShops">-->
+<!--       <h1>Stop Id: {{item.stopId}}</h1>-->
+<!--     </ul>-->
+<!--   </div>-->
 
-  </div>
+<!--  </div>-->
+
+  <button type="button" (click)="goToRunList(detailedRun)">Back</button>
 
 </div>
+
 

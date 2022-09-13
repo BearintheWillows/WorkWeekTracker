@@ -2,6 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 import {Run} from '../../_models/run';
 import {RunsService} from "../../_services/runs.service";
 import {MessageService} from "../../_services/message.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector   : 'app-run-list',
@@ -10,26 +11,29 @@ import {MessageService} from "../../_services/message.service";
 })
 export class RunListComponent implements OnInit {
 
-  runs?: any;
-  selectedRun?: Run
+  runs: Run[] = [];
+  selectedRun?: Run;
+  runId: string = '';
 
-  constructor(private runService: RunsService, private messageService: MessageService) {
+  constructor(
+    private runService: RunsService,
+    ) {
   }
 
   ngOnInit(): void {
+    this.runs = this.route
     this.loadData()
   }
 
 
   loadData() {
+
     this.runService.getRuns().subscribe(res => {
       this.runs = res;
-      console.log(res)
     });
   }
   onSelect(run: Run): void{
     this.selectedRun = run;
-    console.log(`selectedRun: ${run.id}`)
 
   }
 

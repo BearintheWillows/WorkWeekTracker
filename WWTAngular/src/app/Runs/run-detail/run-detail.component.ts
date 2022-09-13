@@ -1,10 +1,11 @@
 import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import { Run } from '../../_models/run';
 import {RunsService} from "../../_services/runs.service";
-import {DailyRoute} from "../../_models/dailyRoute";
+import {DetailedRun} from "../../_models/detailedRun";
 import {Shop} from "../../_models/shop";
-import {Observable, of} from "rxjs";
+import {Observable, of, switchMap} from "rxjs";
 import {RunShop} from "../../_models/RunShop";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 
 @Component({
   selector: 'app-run-detail',
@@ -13,35 +14,36 @@ import {RunShop} from "../../_models/RunShop";
 })
 export class RunDetailComponent implements OnInit {
 
-  dailyRoute?: DailyRoute ;
-  route: RunShop[] = [];
+  detailedRun: DetailedRun | undefined ;
 
-  constructor(private runService: RunsService) { }
-  @Input() run?: any;
+
+  constructor(
+    private runService: RunsService,
+    private route: ActivatedRoute,
+    private router: Router) {
+
+  }
+
 
 
   ngOnInit(): void {
-    this.loadData();
+    this.detailedRun = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+      this.runService.getRunShopsById(params.get('id')!))
+
+    )
   }
 
-  getDetail(): void{
-    this.loadData();
-    this.displayData();
-  }
+  goToRunList(detailedRun: DetailedRun) {
 
-
-  loadData(): void {
-    this.runService.getRunShopsById(1).subscribe((res) => {
-      this.dailyRoute = res;
-      this.route = res.shops;
-    });
-  }
-
-
-  displayData(): void{
-    console.log(this.route)
+    const runId = detailedRun ? detailedRun.runId : null ;
+    this.router.navigate(['/runs', { id: runId, foo: 'foo'}]);
 
   }
+
+
+
+
 
 
 }
