@@ -7,7 +7,6 @@ import {FormsModule} from "@angular/forms";
 import {MatCardModule} from "@angular/material/card";
 
 
-
 @NgModule({
   declarations: [
     RunListComponent,
@@ -19,6 +18,7 @@ import {MatCardModule} from "@angular/material/card";
     RunsRoutingModule,
     FormsModule,
     MatCardModule,
+
   ],
 })
 export class RunsModule { }
