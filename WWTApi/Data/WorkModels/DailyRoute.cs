@@ -9,7 +9,8 @@ public class DailyRoute
 	/// Position on Route plan
 	/// </summary>
 	///
-	public int Id { get;     set; }
+	public int Id { get; set; }
+
 	public int StopId { get; set; }
 
 	public int       RunId     { get; set; }
@@ -55,6 +56,12 @@ public class DailyRoute
 	}
 
 
+	/// <summary>
+	/// Create a default route for eahc day of the week for the specified Run Id
+	/// </summary>
+	/// <param name="id"></param>
+	/// <param name="dataContext"></param>
+	/// <returns>Collection of 7 default routes</returns>
 	public static async Task<bool> CreateBlankRoutes(int id, DataContext? dataContext)
 	{
 		int day = 0;
@@ -68,7 +75,7 @@ public class DailyRoute
 				RunId = id,
 				DayOfWeek = ( DayOfWeek ) day,
 				StopId = 0,
-				ShopId =null,
+				ShopId = null,
 				Shop = null,
 				};
 
@@ -79,7 +86,7 @@ public class DailyRoute
 
 		foreach ( var item in routeList )
 		{
-			Console.WriteLine(item.RunId + item.DayOfWeek.ToString() + item.ShopId + item.Shop?.CompanyName);
+			Console.WriteLine( item.RunId + item.DayOfWeek.ToString() + item.ShopId + item.Shop?.CompanyName );
 		}
 
 		if ( routeList.Count == 7 )

@@ -1,21 +1,12 @@
 
-<div class="detailBox" *ngIf="detailedRun != undefined" >
-  <h2>Run Number:  Details</h2>
-
-<!--  <div>-->
-<!--    <label for="runId">Id: </label>-->
-<!--    <input id="runId" [(ngModel)]="detailedRun.runId" placeholder="{{detailedRun.}}">-->
-<!--    <label for="runDay">Location</label>-->
-<!--    <input id="runDay" [(ngModel)]="detailedRun.deliveryDay" placeholder="{{detailedRun.deliveryDay}}">-->
-<!--   <div *ngIf="runShops != undefined">-->
-<!--     <ul *ngFor="let item of runShops">-->
-<!--       <h1>Stop Id: {{item.stopId}}</h1>-->
-<!--     </ul>-->
-<!--   </div>-->
-
-<!--  </div>-->
+<div class="detailBox" *ngIf="detailedRun$ | async as run;" >
+  <h2>Run Number:  {{run.id}}</h2>
 
 
-</div>
+  <button (click)="goToRunList(run)">Bacckkkkk</button>
+  </div>
+
+
+
 
 

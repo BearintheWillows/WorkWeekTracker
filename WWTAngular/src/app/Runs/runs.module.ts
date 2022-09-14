@@ -5,6 +5,7 @@ import {RunDetailComponent} from "./run-detail/run-detail.component";
 import {RunsRoutingModule} from "../routing-modules/runs-routing.module";
 import {FormsModule} from "@angular/forms";
 import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -13,12 +14,13 @@ import {MatCardModule} from "@angular/material/card";
     RunDetailComponent
 
   ],
-  imports: [
-    CommonModule,
-    RunsRoutingModule,
-    FormsModule,
-    MatCardModule,
+    imports: [
+        CommonModule,
+        RunsRoutingModule,
+        FormsModule,
+        MatCardModule,
+        MatButtonModule,
 
-  ],
+    ],
 })
 export class RunsModule { }

@@ -2,7 +2,7 @@ namespace WWTApi.Data.WorkModels.DTOs;
 
 public class DailyRouteDto
 {
-	public int? RunId { get; set; }
+	public int? Id{ get; set; }
 	
 	public string? Location { get; set; }
 

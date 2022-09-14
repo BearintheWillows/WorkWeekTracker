@@ -1,17 +1,20 @@
 import {Component, OnInit} from '@angular/core';
 import {RunsService} from "../../_services/runs.service";
 import {DetailedRun} from "../../_models/detailedRun";
-import {Observable, switchMap} from "rxjs";
+import {switchMap} from "rxjs/operators";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {Observable} from "rxjs";
 
 @Component({
-  selector: 'app-run-detail',
+  selector   : 'app-run-detail',
   templateUrl: './run-detail.component.html',
-  styleUrls: ['./run-detail.component.scss']
+  styleUrls  : ['./run-detail.component.scss']
 })
 export class RunDetailComponent implements OnInit {
 
-  detailedRun: Observable<DetailedRun> | undefined ;
+  detailedRun$!: Observable<DetailedRun>;
+  runId?: string | null;
+  day?: string | null;
 
 
   constructor(
@@ -22,25 +25,24 @@ export class RunDetailComponent implements OnInit {
   }
 
 
-
   ngOnInit(): void {
-    this.detailedRun = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-      this.runService.getRunShopsById(params.get('id')!))
 
-    )
+    this.detailedRun$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => {
+
+        this.runId = params.get('id');
+        this.day = params.get('day');
+
+          return this.runService.getRunShopsById(this.runId, this.day)
+      }))
   }
 
-  goToRunList(detailedRun: DetailedRun) {
-
-    const runId = detailedRun ? detailedRun.id : null ;
-    this.router.navigate(['/runs', { id: runId, foo: 'foo'}]);
+  goToRunList(run: DetailedRun) {
+    const runId = run ? run.id : null;
+    this.router.navigate(['/runs', {id: runId, foo: 'foo'}]);
+    console.log(run)
 
   }
-
-
-
-
 
 
 }
