@@ -65,6 +65,7 @@ public class RunController : ControllerBase
 				{
 				RunId = x.Run.Id,
 				Location = x.Run.LocationArea,
+				DeliveryDay = day != null ? day.ToString().Normalize() : null,
 				Shops = DailyRoute.SetRouteDto( plans )
 				}
 		).FirstOrDefaultAsync();
@@ -92,5 +93,16 @@ public class RunController : ControllerBase
 		}
 
 		return NotFound();
+	}
+
+	[HttpPost]
+	public async Task<IActionResult> PostRun(Run run)
+	{
+		if ( await Run.Create( run, _dataContext ) && await DailyRoute.CreateBlankRoutes( run.Id, _dataContext ))
+		{
+			return NoContent();
+		}
+
+		return BadRequest();
 	}
 }

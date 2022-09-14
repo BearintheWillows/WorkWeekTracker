@@ -42,4 +42,17 @@ public class Run
 
 		return true;
 	}
+
+	public static async Task<bool> Create(Run run, DataContext? dataContext)
+	{
+		var newRun = new Run { Id = run.Id, LocationArea = run.LocationArea, DailyRoutePlans = null, };
+
+		if ( dataContext.Runs.Add( newRun ) != null )
+		{
+			await dataContext.SaveChangesAsync();
+			return true;
+		}
+
+		return false;
+	}
 }

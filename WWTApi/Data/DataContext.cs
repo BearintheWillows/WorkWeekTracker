@@ -18,9 +18,9 @@ public class DataContext : DbContext
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
 		modelBuilder.Entity<DailyRoute>()
-		            .HasKey( x => new { x.RunId, x.ShopId, x.DayOfWeek } );
+		            .HasKey( x => x.Id );
 		modelBuilder.Entity<DailyRoute>()
-		            .HasIndex( x => new { x.ShopId, x.DayOfWeek, } )
+		            .HasIndex( x => new { x.ShopId, x.DayOfWeek } )
 		            .IsUnique();
 		modelBuilder.Entity<DailyRoute>()
 		            .HasIndex( x => new { x.StopId, x.DayOfWeek, x.RunId } )
