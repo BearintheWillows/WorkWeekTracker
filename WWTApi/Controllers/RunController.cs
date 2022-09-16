@@ -64,7 +64,7 @@ public class RunController : ControllerBase
 		Task<DailyRouteDto?> route = plans.Include( r => r.Run ).Select( x => new DailyRouteDto
 				{
 				Id = x.Run.Id,
-				Location = x.Run.LocationArea,
+				Location = x.Run.Location,
 				DeliveryDay = day != null ? day.ToString().Normalize() : null,
 				Shops = DailyRoute.SetRouteDto( plans )
 				}

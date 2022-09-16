@@ -6,6 +6,9 @@ import {RunsRoutingModule} from "../routing-modules/runs-routing.module";
 import {FormsModule} from "@angular/forms";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
+import {MatListModule} from "@angular/material/list";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatTableModule} from "@angular/material/table";
 
 
 @NgModule({
@@ -14,13 +17,16 @@ import {MatButtonModule} from "@angular/material/button";
     RunDetailComponent
 
   ],
-    imports: [
-        CommonModule,
-        RunsRoutingModule,
-        FormsModule,
-        MatCardModule,
-        MatButtonModule,
+  imports: [
+    CommonModule,
+    RunsRoutingModule,
+    FormsModule,
+    MatCardModule,
+    MatButtonModule,
+    MatListModule,
+    MatExpansionModule,
+    MatTableModule,
 
-    ],
+  ],
 })
 export class RunsModule { }

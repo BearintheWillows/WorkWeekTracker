@@ -11,10 +11,10 @@ public class SeedData
 		{
 			var runs = new List<Run>
 				{
-				new() { Id = 68, LocationArea = "Norwhich" },
-				new() { Id = 14, LocationArea = "Northampton" },
-				new() { Id = 6, LocationArea = "Ipswich" },
-				new() { Id = 104, LocationArea = "Essex" },
+				new() { Id = 68, Location = "Norwhich" },
+				new() { Id = 14, Location = "Northampton" },
+				new() { Id = 6, Location = "Ipswich" },
+				new() { Id = 104, Location = "Essex" },
 				};
 			runs.ForEach( r => context?.Runs.Add( r ) );
 			context?.SaveChanges();

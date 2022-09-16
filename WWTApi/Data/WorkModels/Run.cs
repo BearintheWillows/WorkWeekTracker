@@ -9,7 +9,7 @@ public class Run
 
 	public int Id { get; init; }
 
-	public string? LocationArea { get; set; } = String.Empty;
+	public string? Location { get; set; } = String.Empty;
 
 	public virtual ICollection<DailyRoute>? DailyRoutePlans { get; set; }
 
@@ -35,7 +35,7 @@ public class Run
 			return false;
 		}
 
-		existingRun.LocationArea = run.LocationArea;
+		existingRun.Location = run.Location;
 
 		dataContext.Runs.Update( existingRun );
 		await dataContext.SaveChangesAsync();
@@ -45,7 +45,7 @@ public class Run
 
 	public static async Task<bool> Create(Run run, DataContext? dataContext)
 	{
-		var newRun = new Run { Id = run.Id, LocationArea = run.LocationArea, DailyRoutePlans = null, };
+		var newRun = new Run { Id = run.Id, Location = run.Location, DailyRoutePlans = null, };
 
 		if ( dataContext.Runs.Add( newRun ) != null )
 		{

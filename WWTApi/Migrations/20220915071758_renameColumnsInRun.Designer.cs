@@ -12,8 +12,8 @@ using WWTApi.Data;
 namespace WWTApi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220914070807_Initial")]
-    partial class Initial
+    [Migration("20220915071758_renameColumnsInRun")]
+    partial class renameColumnsInRun
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

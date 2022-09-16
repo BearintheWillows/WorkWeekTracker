@@ -61,7 +61,7 @@ namespace WWTApi.Migrations
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<string>("LocationArea")
+                    b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
