@@ -1,0 +1,50 @@
+<mat-table [dataSource]="getShop()">
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{shop.shop.name}} </mat-cell>
+  </ng-container>
+
+  <!-- Address 1 Column -->
+  <ng-container matColumnDef="address1">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Street Address </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{shop.shop.address1}} </mat-cell>
+  </ng-container>
+
+<!--  Address 2 Column-->
+  <ng-container matColumnDef="address2" >
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Secondary Address </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{shop.shop.address2}} </mat-cell>
+  </ng-container>
+
+<!--  City Column-->
+  <ng-container matColumnDef="city">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> City</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{shop.shop.city}} </mat-cell>
+  </ng-container>
+
+<!--  County Column-->
+  <ng-container matColumnDef="county">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> County </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{shop.shop.county}} </mat-cell>
+  </ng-container>
+
+<!--  Postcode Column-->
+  <ng-container matColumnDef="postcode">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> PostCode </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{shop.shop.postCode}} </mat-cell>
+  </ng-container>
+
+<!--  Notes Column-->
+  <ng-container matColumnDef="notes">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Notes</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{shop.shop.notes}} </mat-cell>
+  </ng-container>
+
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;">
+  </mat-row>
+
+</mat-table>

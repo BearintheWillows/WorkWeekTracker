@@ -5,27 +5,27 @@ import {RunDetailComponent} from "./run-detail/run-detail.component";
 import {RunsRoutingModule} from "../routing-modules/runs-routing.module";
 import {FormsModule} from "@angular/forms";
 import {MatCardModule} from "@angular/material/card";
-import {MatButtonModule} from "@angular/material/button";
-import {MatListModule} from "@angular/material/list";
 import {MatExpansionModule} from "@angular/material/expansion";
+import {AppModule} from "../app.module";
+import {TableComponent} from "../table/table.component";
+import {TAB} from "@angular/cdk/keycodes";
 import {MatTableModule} from "@angular/material/table";
 
 
 @NgModule({
   declarations: [
     RunListComponent,
-    RunDetailComponent
-
+    RunDetailComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,
     RunsRoutingModule,
     FormsModule,
     MatCardModule,
-    MatButtonModule,
-    MatListModule,
     MatExpansionModule,
     MatTableModule,
+
 
   ],
 })

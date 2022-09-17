@@ -1,3 +1,4 @@
+import { TableComponent } from './../../table/table.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RunDetailComponent } from './run-detail.component';

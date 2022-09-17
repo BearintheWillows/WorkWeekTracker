@@ -17,9 +17,8 @@ export class RunDetailComponent implements OnInit {
   detailedRun$!: Observable<DetailedRun>;
   runId?: string | null;
   day?: string | null;
-  runShops: RunShop[] = [];
-  displayedColumns: string[] = ['address'];
-  toggledShop: number = 0;
+  runShops!: RunShop[];
+
 
 
   constructor(

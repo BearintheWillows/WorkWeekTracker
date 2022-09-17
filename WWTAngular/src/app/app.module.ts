@@ -15,23 +15,22 @@ import { NavComponent } from './nav/nav.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from './footer/footer.component';
-import {MatButtonModule} from "@angular/material/button";
-import {MatTabsModule} from "@angular/material/tabs";
-import {MatCardModule} from "@angular/material/card";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {RunsModule} from "./Runs/runs.module";
+import { TableComponent } from './table/table.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavComponent,
-    DashboardComponent,
-    FooterComponent,
-    PageNotFoundComponent,
-    MessagesComponent
+    declarations: [
+        AppComponent,
+        NavComponent,
+        DashboardComponent,
+        FooterComponent,
+        PageNotFoundComponent,
+        MessagesComponent,
 
-  ],
-    imports: [
+
+    ],
+    imports     : [
         BrowserModule,
         HttpClientModule,
         BrowserAnimationsModule,
@@ -40,7 +39,9 @@ import {RunsModule} from "./Runs/runs.module";
         AppRoutingModule,
 
     ],
-  providers: [],
-  bootstrap: [AppComponent]
+    providers   : [],
+  exports: [
+  ],
+    bootstrap   : [AppComponent]
 })
 export class AppModule { }
