@@ -10,6 +10,8 @@ import {AppModule} from "../app.module";
 import {TableComponent} from "../table/table.component";
 import {TAB} from "@angular/cdk/keycodes";
 import {MatTableModule} from "@angular/material/table";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import {MatTableModule} from "@angular/material/table";
     MatCardModule,
     MatExpansionModule,
     MatTableModule,
+    MatInputModule,
+    MatSelectModule,
 
 
   ],

@@ -1,8 +1,8 @@
 
 <div class="card-container" >
   <h2>Run List</h2>
-  <div class="card" *ngFor="let run of runs">
-    <a [routerLink]="['/run/' + run.id + '/details' ]">
+  <div class="card" *ngFor="let run of runs$ | async">
+    <a [routerLink]="['/run/' + run.id + '/details']" (click)="goToDetail(run)">
     <mat-card>
       <mat-card-header>
         <mat-card-title>{{run.id}}</mat-card-title>

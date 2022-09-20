@@ -1,11 +1,23 @@
-<div class="detailBox" *ngIf="detailedRun$ | async as runValues;">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Run: {{runValues.id}}</mat-card-title>
-      <mat-card-subtitle>{{runValues.location}}</mat-card-subtitle>
-    </mat-card-header>
+<div class="detailBox" >
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Run: {{runId}}</mat-card-title>
+    <mat-card-subtitle>{{location}}</mat-card-subtitle>
+    <mat-card-title> Delivery Day:
+      <mat-form-field appearance="standard">
+        <mat-label>Pick a day...</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let day of dayOfWeek" [value]='day[0]' (click)="loadData(day)">
+            {{day}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-title>
+
+  </mat-card-header>
+  <div *ngIf="detailedRun$ | async as run;">
     <mat-card-content>
-      <mat-expansion-panel *ngFor="let shop of runValues.shops"  hideToggle>
+      <mat-expansion-panel *ngFor="let shop of run.shops" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>{{shop.stopId}}</mat-panel-title>
           <mat-panel-description>{{shop.shop.name}} - {{shop.shop.city}}</mat-panel-description>
@@ -13,12 +25,23 @@
         <app-table [shop]="shop"></app-table>
       </mat-expansion-panel>
     </mat-card-content>
+  </div>
+  <div *ngIf="detailedRun$ | async as run">
+    <div *ngIf="!run.shops">
+    <mat-card-content>
+      <h2> No Shops to display </h2>
+    </mat-card-content>
+    </div>
+  </div>
+  <mat-card-footer>
+    <button class="tw-blue-btn" (click)="goToRunList(runId.toString())">Back to List</button>
+  </mat-card-footer>
 
-    <mat-card-footer>
-      Footer
-    </mat-card-footer>
-  </mat-card>
-  <button (click)="goToRunList(runValues)">Bacckkkkk</button>
+
+
+
+
+</mat-card>
 </div>
 
 

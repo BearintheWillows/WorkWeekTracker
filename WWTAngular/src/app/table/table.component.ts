@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {RunShop} from "../_models/RunShop";
 import {MatTableDataSource} from "@angular/material/table";
 import {map, Observable} from "rxjs";
+import {WeekDay} from "@angular/common";
 
 
 @Component({
