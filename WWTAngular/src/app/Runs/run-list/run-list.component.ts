@@ -44,7 +44,7 @@ export class RunListComponent implements OnInit {
   goToDetail(run: baseRun) {
     const runId = run ? run.id : null;
     const runLoc = run ? run.location : null;
-    this.router.navigate(['/run/' + run.id + '/details', {id: runId, location: runLoc}]);
+    this.router.navigate(['/run/' + run.id + '/details', {id: runId, loc: runLoc}]);
 
   }
 

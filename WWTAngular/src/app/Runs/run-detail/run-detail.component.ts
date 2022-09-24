@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RunsService} from "../../_services/runs.service";
 import {DetailedRun} from "../../_models/detailedRun";
-import {switchMap} from "rxjs/operators";
+import {finalize, switchMap} from "rxjs/operators";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {Observable, Subscription} from "rxjs";
 import {RunShop} from 'src/app/_models/RunShop';
@@ -15,13 +15,14 @@ export class RunDetailComponent implements OnInit {
 
   detailedRun$!: Observable<DetailedRun>;
   runId: string = '';
-  run?: DetailedRun ;
-  runShops: RunShop[] | undefined;
+  runLocation: string = '';
+  deliveryDay: string = 'Monday';
+  run?: DetailedRun;
   dayOfWeek: string[] = [
     "Sunday", "Monday", "Tuesday",
     "Wednesday", "Thursday"
     , "Friday", "Saturday"];
-
+  dataLoaded: boolean = false;
 
 
   constructor(
@@ -33,22 +34,33 @@ export class RunDetailComponent implements OnInit {
 
 
   ngOnInit(): void {
-      this.loadData('Sunday')
+    this.loadData('Sunday')
 
-    this.detailedRun$.subscribe(x => this.run = x)
-
-    console.log(this.run)
   }
 
 
   loadData(day: string) {
-    this.detailedRun$ = this.route.paramMap.pipe(
+    this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
 
         this.runId = params.get('id')!;
+        this.runLocation = params.get('loc')!;
 
         return this.runService.getRunShopsById(this.runId, day)
-      }))
+      })
+    ).subscribe(x => {
+
+      this.run = x;
+      if(this.run) {
+        this.dataLoaded = true;
+      } else {
+        this.dataLoaded = false;
+
+      }
+      console.log(`Data Loaded: ${this.dataLoaded}.`)
+      console.log(`Run Data: ${this.run}`)
+    })
+
   }
 
 

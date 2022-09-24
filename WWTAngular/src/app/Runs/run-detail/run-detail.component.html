@@ -1,13 +1,13 @@
 <div class="detailBox" >
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Run: {{runId}}</mat-card-title>
-    <mat-card-subtitle></mat-card-subtitle>
+    <mat-card-title>Run: {{this.runId}}</mat-card-title>
+    <mat-card-subtitle>Location: {{this.runLocation}}</mat-card-subtitle>
     <mat-card-title> Delivery Day:
       <mat-form-field appearance="standard">
         <mat-label>Pick a day...</mat-label>
         <mat-select>
-          <mat-option *ngFor="let day of dayOfWeek" [value]='day[0]' (click)="loadData(day)">
+          <mat-option *ngFor="let day of dayOfWeek" [value]='day' (click)="loadData(day)" >
             {{day}}
           </mat-option>
         </mat-select>
@@ -15,9 +15,9 @@
     </mat-card-title>
 
   </mat-card-header>
-  <div *ngIf="detailedRun$ | async as run;">
+  <div *ngIf="dataLoaded">
     <mat-card-content>
-      <mat-expansion-panel *ngFor="let shop of run.shops" hideToggle>
+      <mat-expansion-panel *ngFor="let shop of this.run!.shops" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>{{shop.stopId}}</mat-panel-title>
           <mat-panel-description>{{shop.shop.name}} - {{shop.shop.city}}</mat-panel-description>
@@ -26,19 +26,20 @@
       </mat-expansion-panel>
     </mat-card-content>
   </div>
+  <div *ngIf="!dataLoaded">
     <mat-card-content>
-      <h2> No Shops to display </h2>
+      <mat-expansion-panel disabled>
+        <mat-expansion-panel-header>
+        <mat-panel-title > No Shops to display</mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
     </mat-card-content>
-
+  </div>
   <mat-card-footer>
     <button class="tw-blue-btn" (click)="goToRunList(runId)">Back to List</button>
   </mat-card-footer>
-
-
-
-
-
 </mat-card>
+
 </div>
 
 
