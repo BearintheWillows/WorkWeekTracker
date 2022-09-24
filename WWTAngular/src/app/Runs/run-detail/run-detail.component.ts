@@ -3,11 +3,8 @@ import {RunsService} from "../../_services/runs.service";
 import {DetailedRun} from "../../_models/detailedRun";
 import {switchMap} from "rxjs/operators";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {Observable} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {RunShop} from 'src/app/_models/RunShop';
-import {WeekDay} from "@angular/common";
-import {baseRun} from "../../_models/baseRun";
-
 
 @Component({
   selector   : 'app-run-detail',
@@ -17,8 +14,8 @@ import {baseRun} from "../../_models/baseRun";
 export class RunDetailComponent implements OnInit {
 
   detailedRun$!: Observable<DetailedRun>;
-  runId!: string;
-  location?: string | null;
+  runId: string = '';
+  run?: DetailedRun ;
   runShops: RunShop[] | undefined;
   dayOfWeek: string[] = [
     "Sunday", "Monday", "Tuesday",
@@ -30,15 +27,17 @@ export class RunDetailComponent implements OnInit {
   constructor(
     private runService: RunsService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,) {
 
   }
 
 
   ngOnInit(): void {
+      this.loadData('Sunday')
 
-    this.loadData(this.dayOfWeek[0]);
+    this.detailedRun$.subscribe(x => this.run = x)
 
+    console.log(this.run)
   }
 
 
@@ -47,14 +46,11 @@ export class RunDetailComponent implements OnInit {
       switchMap((params: ParamMap) => {
 
         this.runId = params.get('id')!;
-        this.location = params.get('location');
-
 
         return this.runService.getRunShopsById(this.runId, day)
-
       }))
-
   }
+
 
   goToRunList(runId: string) {
     this.router.navigate(['/runs', {id: runId}]);

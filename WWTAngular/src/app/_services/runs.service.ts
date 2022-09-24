@@ -37,7 +37,7 @@ export class RunsService {
     } else {
       this.log(' Fetched detailed Runs by id and day')
       return this.http.get<DetailedRun>(this.baseUrl + 'run/' + id + '/route/' + day).pipe(
-        tap(_ => this.log(`fetched detailedHero. id = ${id}, day = ${day}`)))
+        tap(_ => this.log(`fetched detailedRun. id = ${id}, day = ${day}`)))
     }
   }
 

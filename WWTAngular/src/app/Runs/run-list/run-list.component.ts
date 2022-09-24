@@ -14,6 +14,7 @@ import {DetailedRun} from "../../_models/detailedRun";
 export class RunListComponent implements OnInit {
 
   runs$: Observable<baseRun[]> | undefined;
+  selectedId = 0;
 
   constructor(
     private runService: RunsService,
@@ -30,7 +31,14 @@ export class RunListComponent implements OnInit {
 
   loadData() {
 
-   this.runs$ = this.runService.getRuns();
+   this.runs$ = this.route.paramMap.pipe(
+     switchMap(params => {
+       this.selectedId = parseInt(params.get('id')!, 10)
+       this.messageService.add(`selectedId is ${this.selectedId}`)
+       return this.runService.getRuns();
+     })
+
+   )
   }
 
   goToDetail(run: baseRun) {

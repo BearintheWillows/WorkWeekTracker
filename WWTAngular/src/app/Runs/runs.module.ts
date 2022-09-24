@@ -12,6 +12,7 @@ import {TAB} from "@angular/cdk/keycodes";
 import {MatTableModule} from "@angular/material/table";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {MatSelectModule} from "@angular/material/select";
     MatTableModule,
     MatInputModule,
     MatSelectModule,
+    BrowserAnimationsModule
 
 
   ],

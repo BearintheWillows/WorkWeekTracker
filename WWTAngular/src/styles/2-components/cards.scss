@@ -1,0 +1,21 @@
+//Run Cards
+
+.card {
+  margin: 1em;
+  padding: 0;
+
+  width: 15%;
+  text-align: center;
+
+  .selected {
+    background-color: rgb(40, 45, 45, 0.1);
+  }
+
+  .selected:hover {
+    background-color: rgb(40, 45, 45, 0.6);
+  }
+
+}
+
+
+
